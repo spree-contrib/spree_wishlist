@@ -1,0 +1,72 @@
+<h1><%= @wishlist.name %></h1>
+<p><%= @wishlist.is_private ? t('private_wishlist') : t('public_wishlist') %></p>
+<% if @wishlist.user == current_user %>
+<%= link_to t("edit_wishlist"), edit_wishlist_path(@wishlist) %>
+<%= link_to t("delete_wishlist"), @wishlist, :method => :delete, :confirm => t('Are you sure, that you want to delete this wishlist?') %>
+<%= link_to t("create_new_wishlist"), new_wishlist_path %>
+<% end -%>
+<table id="wishlist">
+  <thead>
+    <tr>
+      <% if @wishlist.user == current_user %>
+        <th><%= t("wishlist_actions") %></th>
+      <% end -%>  
+      <th><%= t("item_view") %></th>     
+	    <th><%= t("item_description") %></th>
+      <th><%= t("availability") %></th>
+      <th><%= t("date_added") %></th>
+      <th><%= t("price") %></th>
+    </tr>
+  </thead>
+  <tbody id="line_items">
+  <% if @wishlist.wished_products.size > 0 %>
+    <% @wishlist.wished_products.each do |wish|
+        variant = wish.variant
+        product = variant.product %>
+    <tr class="<%= cycle('', 'alt') %>">
+    <% if @wishlist.user == current_user %>
+      <td>
+        <% form_for :order, :url => orders_url do |f| %>    
+          <%= text_field_tag "variants[#{variant.id}]", 1, :size => 3 %>
+          <%= submit_tag t(:add_to_cart) %>         
+        <% end -%>
+        <%= link_to t("remove_from_wishlist"), wish, :method => :delete %>
+        <br />
+        <%= t("move_to_another_wishlist") %>:
+        <% form_for wish do |f| %>
+          <%= f.select :wishlist_id, current_user.wishlists.map{|wl| [wl.name, wl.id]} %>
+          <%= f.submit t(:move) %>  
+        <% end -%>
+        <br />
+      </td>
+    <% end -%>   
+      <td>
+        <% if variant.images.length == 0 %>
+          <%= small_image(variant.product) %>
+        <% else %>
+          <%= image_tag variant.images.first.attachment.url(:small) %>
+        <% end %>
+      </td>   
+      <td>
+        <h4><%= link_to product.name, product %></h4>
+        <p><%= variant_options variant %></p>
+        <%= truncate(product.description, :length => 100, :omission => "...") %>
+      </td>
+      <td>
+        <%= variant.in_stock? ? t('in_stock') : t('out_of_stock') %>
+      </td>
+      <td>
+        <%= wish.created_at %>
+      </td>
+      <td>
+        <%= product_price(variant) %>
+      </td>
+    </tr>
+    <% end -%>
+  <% else -%>
+		<tr>
+		  <td colspan="6"><%= t("your_wishlist_is_empty") %></td>
+		</tr>
+	<% end -%>	
+	</tbody>
+</table>
