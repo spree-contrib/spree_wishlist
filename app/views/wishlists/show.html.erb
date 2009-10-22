@@ -1,10 +1,14 @@
-<h1><%= @wishlist.name %></h1>
-<p><%= @wishlist.is_private ? t('private_wishlist') : t('public_wishlist') %></p>
-<% if @wishlist.user == current_user %>
-<%= link_to t("edit_wishlist"), edit_wishlist_path(@wishlist) %>
-<%= link_to t("delete_wishlist"), @wishlist, :method => :delete, :confirm => t('Are you sure, that you want to delete this wishlist?') %>
-<%= link_to t("create_new_wishlist"), new_wishlist_path %>
-<% end -%>
+<%= stylesheet_link_tag 'wishlist' %>
+<div id='wishlist_header'>
+  <h1><%= @wishlist.name %></h1>
+  <% if @wishlist.user == current_user %> 
+    <div id='manage_wishlist_links'>
+      <%= link_to t("edit_wishlist"), edit_wishlist_path(@wishlist) %>
+      <%= link_to t("delete_wishlist"), @wishlist, :method => :delete, :confirm => t('Are you sure, that you want to delete this wishlist?') %>
+    </div>
+  <% end -%> 
+  <div><%= @wishlist.is_private ? t('private_wishlist') : t('public_wishlist') %></div>
+</div>
 <table id="wishlist">
   <thead>
     <tr>
@@ -26,12 +30,11 @@
     <tr class="<%= cycle('', 'alt') %>">
     <% if @wishlist.user == current_user %>
       <td>
-        <% form_for :order, :url => orders_url do |f| %>    
-          <%= text_field_tag "variants[#{variant.id}]", 1, :size => 3 %>
-          <%= submit_tag t(:add_to_cart) %>         
-        <% end -%>
         <%= link_to t("remove_from_wishlist"), wish, :method => :delete %>
-        <br />
+        <% form_for :order, :url => orders_url do |f| %>    
+          <%= hidden_field_tag "variants[#{variant.id}]", 1, :size => 3 %>
+          <%= link_to t(:add_to_cart), '#', :onclick => "$(this).parent().submit(); return false;" %>         
+        <% end -%>
         <%= t("move_to_another_wishlist") %>:
         <% form_for wish do |f| %>
           <%= f.select :wishlist_id, current_user.wishlists.map{|wl| [wl.name, wl.id]} %>
@@ -70,3 +73,9 @@
 	<% end -%>	
 	</tbody>
 </table>
+<div class='footer_links'>
+<% if @wishlist.user == current_user %>
+  <%= link_to t("create_new_wishlist"), new_wishlist_path %>
+<% end -%>
+<%= link_to t("continue_shopping"), products_path %>
+</div>

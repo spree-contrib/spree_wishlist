@@ -1,6 +1,12 @@
 class WishedProductsController < ApplicationController
   resource_controller
 
+  # I'm sorry for this hack, but it is simplest way to make adding to wishlist after user logged in,
+  # because redirect_to can not make POST requests
+  def index
+    create
+  end
+
   create.before do
     @wished_product.wishlist = current_user.wishlist
   end
