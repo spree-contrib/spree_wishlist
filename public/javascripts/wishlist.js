@@ -4,7 +4,4 @@ $("#new_wished_product").submit(function() {
   {
     $("#wished_product_variant_id").val(selected_variant_id);
   }
-  alert($("#wished_product_variant_id").val());
-  alert(selected_variant_id);  
 });
-  
