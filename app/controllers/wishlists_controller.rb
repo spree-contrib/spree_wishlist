@@ -5,6 +5,11 @@ class WishlistsController < ApplicationController
   create.before do
     @wishlist.user = current_user
   end
+
+  update.wants.js { 
+    flash[:notice] = nil
+    render :js => "alert('#{t :updated_successfully}');"
+  }
   
   private
   
