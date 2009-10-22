@@ -12,4 +12,14 @@
     roles : [admin]     
     options :
       except : [show, new, create]
-      unless : "current_user and current_user.id == object.user_id" 
+      unless : "current_user and current_user.id == object.user_id"
+'WishedProductsController':
+  permission1:
+    roles : [user]
+    options :
+      for : [index, create]
+  permission2:
+    roles : [admin]
+    options :
+      for : [update, destroy]
+      unless : "current_user and current_user.id == object.wishlist.user_id"      
