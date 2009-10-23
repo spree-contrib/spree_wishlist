@@ -11,6 +11,13 @@ class Wishlist < ActiveRecord::Base
     !self.is_private? || user == self.user
   end
   
+  def is_default=(value)
+    self['is_default'] = value
+    if self.is_default?
+      Wishlist.update_all({:is_default => false}, ["id != ? AND is_default = ? AND user_id = ?", self.id, true, self.user_id])
+    end
+  end
+  
   private
   
   def set_access_hash

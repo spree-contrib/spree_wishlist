@@ -2,5 +2,6 @@
 <% form_for @wishlist do |f| %>
   <p><%= f.label :name, t(:name) %>:&nbsp;<%= f.text_field :name %></p>
   <p><%= f.check_box :is_private %>&nbsp;<%= f.label :is_private, t(:is_private) %></p>
-  <%= f.submit t(:update) %>
+  <p><%= f.check_box :is_default %>&nbsp;<%= f.label :is_default, t(:is_default) %></p>
+  <%= f.submit t(:update) %> <%= t :or %> <%= link_to t("delete_wishlist"), @wishlist, :method => :delete, :confirm => t('Are you sure, that you want to delete this wishlist?') %>
 <% end -%>
