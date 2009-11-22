@@ -12,13 +12,14 @@ class WishlistsController < ApplicationController
   }
   
   private
-  
+
     def object
       @object ||= end_of_association_chain.find_by_access_hash(param)
       @object ||= current_user.wishlist if current_user
+      @object
     end
-  
+
     def can_read?
-      object && object.can_be_read_by?(current_user) 
+      object && object.can_be_read_by?(current_user)
     end
 end
