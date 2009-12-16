@@ -1,0 +1,14 @@
+<%= mail.recipient_name %>,
+
+Please, take a look to my wishlist:
+
+  * <%= wishlist.name %>
+
+<% unless mail.message.blank? -%>
+<%= mail.message %>
+<% end -%>
+
+<%= mail.sender_name %>
+
+Click the link below to view the <%= wishlist.name %> page.
+<%= wishlist_url(wishlist) %>

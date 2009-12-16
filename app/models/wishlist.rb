@@ -7,6 +7,10 @@ class Wishlist < ActiveRecord::Base
     self.access_hash
   end  
 
+  def self.get_by_param(param)
+    Wishlist.find_by_access_hash(param)
+  end
+
   def can_be_read_by?(user)
     !self.is_private? || user == self.user
   end
