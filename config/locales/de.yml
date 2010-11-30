@@ -1,0 +1,35 @@
+de:
+  add_to_wishlist: "Für die Wunschliste"
+  "Are you sure, that you want to delete this wishlist?": "Sind sie sicher, dass sie diese Wunschliste löschen wollen?"
+  availability: "Verfügbarkeit"
+  create_new_wishlist: "Neue Wunschliste erstellen"
+  creating_wishlist: "Wunschliste erstellen"
+  date_added: "Hinzugefügt am"
+  delete_wishlist: "Wunschliste löschen"
+  edit_wishlist: "Wunschliste ändern"
+  editing_wishlist: "Ändere Wunschliste"
+  in_stock: "Verfügbar"
+  is_default: "ist voreingstellt"
+  is_private: "ist privat"
+  item_view: "Bild"
+  move: "Verschieben"
+  move_to_another_wishlist: "Verschiebe in"
+  my_wishlists: "Meine Wuschlisten"
+  private_wishlist: "Private Wunschlisten"
+  private: "Privat"
+  public_wishlist: "Öffentliche Wunschlisten"
+  public: "Öffentlich"
+  remove_from_wishlist: "Von Wunschliste entfernen"
+  wishlist_actions: ""
+  your_wishlist_is_empty: "Deine Wunschliste ist leer"
+  update_quantity: "Ändere Menge"
+  item_added_to_wishlist: "Artikel wurde zur Wunschliste hinzugefügt"
+  email_to_friend: "Wunschliste an einen Freund verschicken"
+  wishlist_email_sent: 'Wunschliste wurde an einen Freund versand.'
+  send_wishlist: Senden
+  email_address_missing: 'Email ist erforderlich.'
+  message: Nachricht
+  wishlist_sender_name: 'Dein Name'
+  wishlist_recipients_name: 'Name des Freundes'
+  subject: 'Betreff'
+  quantity: 'Menge'
