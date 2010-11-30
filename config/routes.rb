@@ -1,5 +1,5 @@
-# Put your extension routes here.
-
-map.resources :wishlists
-map.resources :wished_products
-map.default_wishlist '/wishlist', :controller => :wishlists, :action => 'show'
+Rails.application.routes.draw do
+  resources :wishlists
+  resources :wished_products
+  match '/wishlist' => "wishlists#show", :as => "default_wishlist"
+end

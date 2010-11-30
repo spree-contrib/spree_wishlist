@@ -30,12 +30,12 @@
     <% if @wishlist.user == current_user %>
       <td>
         <%= link_to t("remove_from_wishlist"), wish, :method => :delete %>
-        <% form_for :order, :url => orders_url do |f| %>    
+        <%= form_for :order, :url => populate_orders_url do |f| %>    
           <%= hidden_field_tag "variants[#{variant.id}]", 1, :size => 3 %>
           <%= link_to t(:add_to_cart), '#', :onclick => "$(this).parent().submit(); return false;" %>         
         <% end -%>
         <%= t("move_to_another_wishlist") %>:
-        <% form_for wish do |f| %>
+        <%= form_for wish do |f| %>
           <%= f.select :wishlist_id, current_user.wishlists.map{|wl| [wl.name, wl.id]} %>
           <%= f.submit t(:move) %>  
         <% end -%>
@@ -72,7 +72,7 @@
 	<% end -%>	
 	</tbody>
 </table>
-<% hook :wishlist_footer_links do %>
+<%= hook :wishlist_footer_links do %>
   <div class='footer_links'>
   <% if @wishlist.user == current_user %>
     <%= link_to t("create_new_wishlist"), new_wishlist_path %>

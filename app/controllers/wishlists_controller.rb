@@ -1,4 +1,4 @@
-class WishlistsController < ApplicationController
+class WishlistsController < Spree::BaseController
   resource_controller
   helper :products
   
