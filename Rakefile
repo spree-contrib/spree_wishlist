@@ -6,6 +6,22 @@ require 'rake/testtask'
 require 'rake/packagetask'
 require 'rake/gempackagetask'
 
+gemfile = File.expand_path('../spec/test_app/Gemfile', __FILE__)
+if File.exists?(gemfile)
+  require 'bundler'
+  ENV['BUNDLE_GEMFILE'] = gemfile
+  Bundler.setup
+
+  require 'rspec/core/rake_task'
+  RSpec::Core::RakeTask.new
+
+  require 'cucumber/rake/task'
+  Cucumber::Rake::Task.new do |t|
+    t.cucumber_opts = %w{--format pretty}
+  end
+end
+
+
 spec = eval(File.read('spree_wishlist.gemspec'))
 
 Rake::GemPackageTask.new(spec) do |p|
@@ -21,14 +37,6 @@ end
 
 desc "Default Task"
 task :default => [ :spec ]
-
-require 'rspec/core/rake_task'
-RSpec::Core::RakeTask.new
-
-require 'cucumber/rake/task'
-Cucumber::Rake::Task.new do |t|
-  t.cucumber_opts = %w{--format pretty}
-end
 
 # TODO: pull in the spree/core/Rakefile bits that set up for testing
 desc "Regenerates a Rails 3 app for testing"
