@@ -49,6 +49,7 @@ task :test_app do
       append_file "Gemfile" ,
         <<-gems
 
+gem 'fabrication'
 gem 'spree_core', '>=0.30.0'
 gem 'spree_auth', '>=0.30.0'
 gem 'spree_wishlist', :path => "#{File.dirname(__FILE__)}"
