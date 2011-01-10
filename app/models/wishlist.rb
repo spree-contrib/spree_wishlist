@@ -25,6 +25,6 @@ class Wishlist < ActiveRecord::Base
   private
   
   def set_access_hash
-    self.access_hash = Digest::SHA1.hexdigest("--#{user_id}--#{user.salt}--#{Time.now}--")
+    self.access_hash = Digest::SHA1.hexdigest("--#{user_id}--#{user.password_salt}--#{Time.now}--")
   end
 end
