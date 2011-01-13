@@ -1,9 +1,11 @@
-<div id="wishlist-form">
-  <% form_for WishedProduct.new, :html => {:method => :get} do |f| %>
-    <%= f.hidden_field :variant_id, :value => @product.master.id %>
-    <button type='submit' class='large primary'>
-      <%= image_tag('/images/add-to-cart.png') + t('add_to_wishlist') %>
-    </button>
-  <% end %>
-  <%= javascript_include_tag 'wishlist' %>
-</div>
+<% if current_user %>
+	<div id="wishlist-form">
+	  <% form_for WishedProduct.new, :html => {:method => :get} do |f| %>
+	    <%= f.hidden_field :variant_id, :value => @product.master.id %>
+	    <button type='submit' class='large primary'>
+	      <%= image_tag('/images/add-to-cart.png') + t('add_to_wishlist') %>
+	    </button>
+	  <% end %>
+	  <%= javascript_include_tag 'wishlist' %>
+	</div>
+<% end %>
