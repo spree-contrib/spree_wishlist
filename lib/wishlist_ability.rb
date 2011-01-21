@@ -5,8 +5,8 @@ class WishlistAbility
   def initialize(user)
 # TODO - this is really soggy (i.e., non-DRY), and it's not all necessary
     # You can only index your own wishlists
-    can :index, Wishlist do |wishlist|
-      wishlist.user == user
+    can :index, Wishlist do
+      !user.new_record?
     end
     # Anyone can create a wishlist
     can :create, Wishlist
@@ -30,7 +30,7 @@ class WishlistAbility
     end
 
     can :create, WishedProduct do |wished_product|
-      wished_product.wishlist.user == user
+      !user.new_record?
     end
     can :index, WishedProduct do |wished_product|
       wished_product.wishlist.user == user
