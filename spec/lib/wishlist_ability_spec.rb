@@ -79,12 +79,12 @@ describe WishlistAbility do
 
   context "for Wishlist" do
     context "private" do
-      let(:resource) { Wishlist.new(:private => true) }
+      let(:resource) { Wishlist.new(:is_private => true) }
       pending
     end
 
     context "public" do
-      let(:resource) { Wishlist.new }
+      let(:resource) { Wishlist.new(:is_private => false) }
       context "requested by same user" do
         before { resource.user = user }
         pending

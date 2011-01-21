@@ -1,20 +1,20 @@
 <%= stylesheet_link_tag 'wishlist' %>
 <div id='wishlist_header'>
   <h1><%= @wishlist.name %></h1>
-  <% if @wishlist.user == current_user %> 
+  <% if @wishlist.user == current_user %>
     <div id='manage_wishlist_links'>
-      <%= link_to t("edit_wishlist"), edit_wishlist_path(@wishlist) %>      
+      <%= link_to t("edit_wishlist"), edit_wishlist_path(@wishlist) %>
     </div>
-  <% end -%> 
-  <div><%= render :partial => 'accessibility' %></div>
+    <div><%= render :partial => 'accessibility' %></div>
+  <% end -%>
 </div>
 <table id="wishlist">
   <thead>
     <tr>
       <% if @wishlist.user == current_user %>
         <th><%= t("wishlist_actions") %></th>
-      <% end -%>  
-      <th><%= t("item_view") %></th>     
+      <% end -%>
+      <th><%= t("item_view") %></th>
 	    <th><%= t("item_description") %></th>
       <th><%= t("availability") %></th>
       <th><%= t("date_added") %></th>
@@ -30,25 +30,27 @@
     <% if @wishlist.user == current_user %>
       <td>
         <%= link_to t("remove_from_wishlist"), wish, :method => :delete %>
-        <%= form_for :order, :url => populate_orders_url do |f| %>    
+        <%= form_for :order, :url => populate_orders_url do |f| %>
           <%= hidden_field_tag "variants[#{variant.id}]", 1, :size => 3 %>
-          <%= link_to t(:add_to_cart), '#', :onclick => "$(this).parent().submit(); return false;" %>         
-        <% end -%>
-        <%= t("move_to_another_wishlist") %>:
-        <%= form_for wish do |f| %>
-          <%= f.select :wishlist_id, current_user.wishlists.map{|wl| [wl.name, wl.id]} %>
-          <%= f.submit t(:move) %>  
-        <% end -%>
+          <%= link_to t(:add_to_cart), '#', :onclick => "$(this).parent().submit(); return false;" %>
+        <% end %>
+        <% if current_user.wishlists.count > 1 %>
+          <%= t("move_to_another_wishlist") %>:
+          <%= form_for wish do |f| %>
+            <%= f.select :wishlist_id, current_user.wishlists.map{|wl| [wl.name, wl.id]} %>
+            <%= f.submit t(:move) %>
+          <% end %>
+        <% end %>
         <br />
       </td>
-    <% end -%>   
+    <% end -%>
       <td>
         <% if variant.images.length == 0 %>
           <%= small_image(variant.product) %>
         <% else %>
           <%= image_tag variant.images.first.attachment.url(:small) %>
         <% end %>
-      </td>   
+      </td>
       <td>
         <h4><%= link_to product.name, product %></h4>
         <p><%= variant_options variant %></p>
@@ -69,7 +71,7 @@
 		<tr>
 		  <td colspan="6"><%= t("your_wishlist_is_empty") %></td>
 		</tr>
-	<% end -%>	
+	<% end -%>
 	</tbody>
 </table>
 <%= hook :wishlist_footer_links do %>
