@@ -18,7 +18,10 @@ class WishlistAbility
       wishlist.user == user
     end
 
-    can :create, WishedProduct
+    can :create, WishedProduct do |wished_product|
+      !user.new_record?
+    end
+
     can :show, WishedProduct do |wished_product|
       wished_product.wishlist.user == user || wished_product.wishlist.is_public?
     end
