@@ -74,12 +74,10 @@
 	<% end -%>
 	</tbody>
 </table>
-<%= hook :wishlist_footer_links do %>
-  <div class='footer_links'>
-  <% if @wishlist.user == current_user %>
-    <%= link_to t("create_new_wishlist"), new_wishlist_path %>
-  <% end -%>
-  <%= link_to t("continue_shopping"), products_path %>
-  </div>
+<div class='footer_links' data-hook="wishlist_footer_links">
+<% if @wishlist.user == current_user %>
+  <%= link_to t("create_new_wishlist"), new_wishlist_path %>
 <% end -%>
+<%= link_to t("continue_shopping"), products_path %>
+</div>
 <%= javascript_include_tag 'wishlist' %>
