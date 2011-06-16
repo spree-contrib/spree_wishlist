@@ -1,16 +1,18 @@
 class WishlistsController < Spree::BaseController
   resource_controller
   helper :products
-  
+
   create.before do
     @wishlist.user = current_user
   end
 
-  update.wants.js { 
+  update.wants.js {
     flash[:notice] = nil
     render :js => "alert('#{t :updated_successfully}');"
   }
-  
+
+  destroy.wants.html { redirect_to account_url }
+
   private
 
     def object
