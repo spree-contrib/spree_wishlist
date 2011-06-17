@@ -1,8 +1,8 @@
 require 'spree_core'
-require 'spree_wishlist_hooks'
 
 module SpreeWishlist
   class Engine < Rails::Engine
+    engine_name 'spree_wishlist'
 
     config.autoload_paths += %W(#{config.root}/lib)
 
