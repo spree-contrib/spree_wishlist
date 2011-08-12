@@ -7,11 +7,10 @@ of a recommended product.
 ## Installation
 
 1. Add the following to your Gemfile
-  gem "spree_wishlist"
-  gem "spree_email_to_friend"
+  gem 'spree_wishlist', :git => 'git://github.com/spree/spree_wishlist.git'
+  gem 'spree_email_to_friend'
 
-2. run `bundle install`
+2. Run `bundle install`
 
-3. copy over assets and migrations via the rake task: `rake spree_wishlist:install`
-4. run the migrations: `rake db:migrate`
+3. To setup the asset pipeline includes and copy migrations run: `rails g spree_wishlist:install`
 
