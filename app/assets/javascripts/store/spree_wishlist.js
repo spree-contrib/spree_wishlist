@@ -1,3 +1,5 @@
+$(function() {
+
 $("#new_wished_product").submit(function() {
   selected_variant_id = $("#product-variants input[type=radio]:checked").val();
   if (selected_variant_id)
@@ -7,11 +9,13 @@ $("#new_wished_product").submit(function() {
 });
 
 
-$(".ajax_form").submit(function() {
+$("form#change_wishlist_accessibility").submit(function() {
 	$.post($(this).attr("action"), $(this).serialize(), null, "script");
 	return false;
 });
 
 $("form#change_wishlist_accessibility input[type=radio]").click(function() {
 	$(this).parent().submit();
+});
+
 });

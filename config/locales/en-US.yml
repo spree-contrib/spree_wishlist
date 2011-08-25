@@ -1,6 +1,6 @@
 en:
   add_to_wishlist: "Add to wishlist"
-  "Are you sure that you want to delete this wishlist?": "Are you sure that you want to delete this wishlist?"
+  are_you_sure_wishlist: "Are you sure that you want to delete this wishlist?"
   availability: "Availability"
   create_new_wishlist: "Create new wishlist"
   creating_wishlist: "Creating wishlist"
