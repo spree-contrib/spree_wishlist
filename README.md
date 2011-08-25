@@ -7,8 +7,11 @@ of a recommended product.
 ## Installation
 
 1. Add the following to your Gemfile
-  gem 'spree_wishlist', :git => 'git://github.com/spree/spree_wishlist.git'
-  gem 'spree_email_to_friend'
+
+<pre>
+    gem 'spree_wishlist', :git => 'git://github.com/spree/spree_wishlist.git'
+    gem 'spree_email_to_friend'
+</pre>
 
 2. Run `bundle install`
 
