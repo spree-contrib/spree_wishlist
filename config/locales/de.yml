@@ -1,6 +1,6 @@
 de:
   add_to_wishlist: "Für die Wunschliste"
-  "Are you sure, that you want to delete this wishlist?": "Sind sie sicher, dass sie diese Wunschliste löschen wollen?"
+  are_you_sure_wishlist: "Sind sie sicher, dass sie diese Wunschliste löschen wollen?"
   availability: "Verfügbarkeit"
   create_new_wishlist: "Neue Wunschliste erstellen"
   creating_wishlist: "Wunschliste erstellen"

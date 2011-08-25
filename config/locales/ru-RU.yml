@@ -1,6 +1,6 @@
 ru-RU:
   add_to_wishlist: "Добавить в список желаний"
-  "Are you sure, that you want to delete this wishlist?": "Вы уверены, что хотите удалить этот список желаний?"
+  are_you_sure_wishlist: "Вы уверены, что хотите удалить этот список желаний?"
   availability: "Доступность"
   create_new_wishlist: "Создать ещё один"
   creating_wishlist: "Создание списка желаний"
