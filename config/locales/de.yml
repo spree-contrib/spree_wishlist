@@ -24,12 +24,3 @@ de:
   your_wishlist_is_empty: "Deine Wunschliste ist leer"
   update_quantity: "Ändere Menge"
   item_added_to_wishlist: "Artikel wurde zur Wunschliste hinzugefügt"
-  email_to_friend: "Wunschliste an einen Freund verschicken"
-  wishlist_email_sent: 'Wunschliste wurde an einen Freund versand.'
-  send_wishlist: Senden
-  email_address_missing: 'Email ist erforderlich.'
-  message: Nachricht
-  wishlist_sender_name: 'Dein Name'
-  wishlist_recipients_name: 'Name des Freundes'
-  subject: 'Betreff'
-  quantity: 'Menge'
