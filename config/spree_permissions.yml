@@ -1,15 +1,15 @@
 'WishlistsController':
   permission1:
-    roles : [admin]     
+    roles : [admin]
     options :
       for : [show]
       unless : "can_read?"
   permission2:
     roles : [user]
     options :
-      for : [new, create]        
+      for : [new, create]
   permission3:
-    roles : [admin]     
+    roles : [admin]
     options :
       except : [show, new, create]
       unless : "current_user and current_user.id == object.user_id"
@@ -22,4 +22,4 @@
     roles : [admin]
     options :
       for : [update, destroy]
-      unless : "current_user and current_user.id == object.wishlist.user_id"      
+      unless : "current_user and current_user.id == object.wishlist.user_id"

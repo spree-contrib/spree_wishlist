@@ -10,12 +10,12 @@ $("#new_wished_product").submit(function() {
 
 
 $("form#change_wishlist_accessibility").submit(function() {
-	$.post($(this).attr("action"), $(this).serialize(), null, "script");
-	return false;
+  $.post($(this).attr("action"), $(this).serialize(), null, "script");
+  return false;
 });
 
 $("form#change_wishlist_accessibility input[type=radio]").click(function() {
-	$(this).parent().submit();
+  $(this).parent().submit();
 });
 
 });
