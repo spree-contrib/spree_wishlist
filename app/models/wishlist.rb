@@ -3,6 +3,12 @@ class Wishlist < ActiveRecord::Base
   has_many :wished_products
   before_create :set_access_hash
 
+  validates :name, :presence => true
+
+  def include?(variant_id)
+    self.wished_products.map(&:variant_id).include? variant_id.to_i
+  end
+
   def to_param
     self.access_hash
   end

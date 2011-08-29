@@ -1,27 +1,49 @@
 class WishlistsController < Spree::BaseController
-  resource_controller
   helper :products
 
-  create.before do
-    @wishlist.user = current_user
+  respond_to :html
+  respond_to :js, :only => [:update]
+
+  def new
+    @wishlist = Wishlist.new
+
+    respond_with(@wishlist)
   end
 
-  update.wants.js {
-    flash[:notice] = nil
-    render :js => "alert('#{t :updated_successfully}');"
-  }
+  def edit
+    @wishlist = Wishlist.find_by_access_hash(params[:id])
 
-  destroy.wants.html { redirect_to account_url }
+    respond_with(@wishlist)
+  end
 
-  private
+  def update
+    @wishlist = Wishlist.find_by_access_hash(params[:id])
+    @wishlist.update_attributes(params[:wishlist])
 
-    def object
-      @object ||= end_of_association_chain.find_by_access_hash(param)
-      @object ||= current_user.wishlist if current_user
-      @object
+    respond_with(@wishlist)
+  end
+
+  def show
+    @wishlists = current_user.wishlists
+    @wishlist = Wishlist.find_by_access_hash(params[:id])
+
+    respond_with(@wishlist)
+  end
+
+  def create
+    @wishlist = Wishlist.new(params[:wishlist])
+    @wishlist.user = current_user
+
+    @wishlist.save
+    respond_with(@wishlist)
+  end
+
+  def destroy
+    @wishlist = Wishlist.find_by_access_hash(params[:id])
+    @wishlist.destroy
+    respond_with(@wishlist )do |format|
+      format.html { redirect_to account_path }
     end
+  end
 
-    def can_read?
-      object && object.can_be_read_by?(current_user)
-    end
 end

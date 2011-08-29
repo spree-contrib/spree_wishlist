@@ -1,24 +1,37 @@
 class WishedProductsController < Spree::BaseController
-  resource_controller
-  # I'm sorry for this hack, but it is simplest way to make adding to wishlist after user logged in,
-  # because redirect_to can not make POST requests
-  def index
-    create
+  respond_to :html
+
+  def create
+    @wished_product = WishedProduct.new(params[:wished_product])
+    @wishlist = current_user.wishlist
+
+    if @wishlist.include? params[:wished_product][:variant_id]
+      @wished_product = @wishlist.wished_products.detect {|wp| wp.variant_id == params[:wished_product][:variant_id].to_i }
+    else
+      @wished_product.wishlist = current_user.wishlist
+      @wished_product.save
+    end
+
+    respond_with(@wished_product) do |format|
+      format.html { redirect_to wishlist_url(@wishlist) }
+    end
   end
 
-  create.before do
-    @wished_product.wishlist = current_user.wishlist
+  def update
+    @wished_product = WishedProduct.find(params[:id])
+    @wished_product.update_attributes(params[:wished_product])
+
+    respond_with(@wished_product) do |format|
+      format.html { redirect_to wishlist_url(@wished_product.wishlist) }
+    end
   end
 
-  create.response do |wants|
-    wants.html { redirect_to @wished_product.wishlist }
-  end
+  def destroy
+    @wished_product = WishedProduct.find(params[:id])
+    @wished_product.destroy
 
-  update.response do |wants|
-    wants.html { redirect_to @wished_product.wishlist }
-  end
-
-  destroy.response do |wants|
-    wants.html { redirect_to @wished_product.wishlist }
+    respond_with(@wished_product) do |format|
+      format.html { redirect_to wishlist_url(@wished_product.wishlist) }
+    end
   end
 end
