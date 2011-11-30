@@ -1,4 +1,4 @@
-class WishedProduct < ActiveRecord::Base
+class Spree::WishedProduct < ActiveRecord::Base
   belongs_to :variant
   belongs_to :wishlist
 end

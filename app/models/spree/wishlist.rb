@@ -1,4 +1,4 @@
-class Wishlist < ActiveRecord::Base
+class Spree::Wishlist < ActiveRecord::Base
   belongs_to :user
   has_many :wished_products
   before_create :set_access_hash
@@ -14,7 +14,7 @@ class Wishlist < ActiveRecord::Base
   end
 
   def self.get_by_param(param)
-    Wishlist.find_by_access_hash(param)
+    Spree::Wishlist.find_by_access_hash(param)
   end
 
   def can_be_read_by?(user)
@@ -24,7 +24,7 @@ class Wishlist < ActiveRecord::Base
   def is_default=(value)
     self['is_default'] = value
     if self.is_default?
-      Wishlist.update_all({:is_default => false}, ["id != ? AND is_default = ? AND user_id = ?", self.id, true, self.user_id])
+      Spree::Wishlist.update_all({:is_default => false}, ["id != ? AND is_default = ? AND user_id = ?", self.id, true, self.user_id])
     end
   end
 
