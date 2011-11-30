@@ -1,5 +1,5 @@
-Deface::Override.new(:virtual_path => "products/show",
+Deface::Override.new(:virtual_path => "spree/products/show",
                      :name => "add_wish_to_cart_form",
                      :insert_bottom => "[data-hook='cart_form']",
-                     :partial => "products/wishlist_form",
+                     :partial => "spree/products/wishlist_form",
                      :disabled => false)
