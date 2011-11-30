@@ -1,8 +1,8 @@
-class WishedProductsController < Spree::BaseController
+class Spree::WishedProductsController < Spree::BaseController
   respond_to :html
 
   def create
-    @wished_product = WishedProduct.new(params[:wished_product])
+    @wished_product = Spree::WishedProduct.new(params[:wished_product])
     @wishlist = current_user.wishlist
 
     if @wishlist.include? params[:wished_product][:variant_id]
@@ -18,7 +18,7 @@ class WishedProductsController < Spree::BaseController
   end
 
   def update
-    @wished_product = WishedProduct.find(params[:id])
+    @wished_product = Spree::WishedProduct.find(params[:id])
     @wished_product.update_attributes(params[:wished_product])
 
     respond_with(@wished_product) do |format|
@@ -27,7 +27,7 @@ class WishedProductsController < Spree::BaseController
   end
 
   def destroy
-    @wished_product = WishedProduct.find(params[:id])
+    @wished_product = Spree::WishedProduct.find(params[:id])
     @wished_product.destroy
 
     respond_with(@wished_product) do |format|
