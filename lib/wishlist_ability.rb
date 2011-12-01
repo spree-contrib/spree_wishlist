@@ -1,5 +1,7 @@
 class WishlistAbility
-# stuff like class AbilityDecorator goes here
+
+  # Stuff like class AbilityDecorator goes here.
+
   include CanCan::Ability
 
   def initialize(user)
@@ -10,11 +12,11 @@ class WishlistAbility
 
     can :create, Spree::Wishlist
     # You can your own wishlists, and everyone cas see public ones
-    can :show, Spree::Wishlist do |wishlist|
+    can :read, Spree::Wishlist do |wishlist|
       wishlist.user == user || wishlist.is_public?
     end
     # You can only change your own wishlist
-    can [:show, :move, :update, :edit, :destroy], Spree::Wishlist do |wishlist|
+    can [:read, :move, :update, :edit, :destroy], Spree::Wishlist do |wishlist|
       wishlist.user == user
     end
 
@@ -22,7 +24,7 @@ class WishlistAbility
       !user.new_record?
     end
 
-    can :show, Spree::WishedProduct do |wished_product|
+    can :read, Spree::WishedProduct do |wished_product|
       wished_product.wishlist.user == user || wished_product.wishlist.is_public?
     end
     can [:index, :update, :delete], Spree::WishedProduct do |wished_product|
