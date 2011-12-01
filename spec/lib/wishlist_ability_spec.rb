@@ -9,8 +9,6 @@ describe WishlistAbility do
 
   TOKEN = "token123"
 
-  # after(:each) { WishlistAbility.abilities = Set.new }
-
   shared_examples_for "allow CRUD" do
     it "should allow create" do
       ability.should be_able_to(:create, resource, token)

@@ -18,6 +18,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'spree_core', '>= 0.80.0.beta'
 
   s.add_development_dependency 'factory_girl'
-  s.add_development_dependency 'rspec-rails',  ' ~> 2.8.0.rc1'
+  s.add_development_dependency 'rspec-rails',  '~> 2.8.0.rc1'
   s.add_development_dependency 'sqlite3'
 end
