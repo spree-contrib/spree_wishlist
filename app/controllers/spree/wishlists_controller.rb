@@ -24,7 +24,6 @@ class Spree::WishlistsController < Spree::BaseController
   end
 
   def show
-    @wishlists = current_user.wishlists
     @wishlist = Spree::Wishlist.find_by_access_hash(params[:id])
 
     respond_with(@wishlist)
