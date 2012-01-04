@@ -3,8 +3,8 @@ require 'cancan/matchers'
 
 describe WishlistAbility do
 
-  let(:user) { Spree::User.new }
-  let(:ability) { WishlistAbility.new(user) }
+  let(:user) { Factory(:user) }
+  let(:ability) { WishlistAbility.new(Factory(:user)) }
   let(:token) { nil }
 
   TOKEN = "token123"
@@ -72,26 +72,26 @@ describe WishlistAbility do
     end
   end
 
-  context "for Wishedproduct" do
-  end
+  #context "for Wishedproduct" do
+  #end
 
-  context "for Wishlist" do
-    context "private" do
-      let(:resource) { Spree::Wishlist.new(:is_private => true) }
-      pending
-    end
+  #context "for Wishlist" do
+    #context "private" do
+      #let(:resource) { Spree::Wishlist.new(:is_private => true) }
+      #pending
+    #end
 
-    context "public" do
-      let(:resource) { Spree::Wishlist.new(:is_private => false) }
-      context "requested by same user" do
-        before { resource.user = user }
-        pending
-        it_should_behave_like "allow CRUD"
-      end
-      context "requested by other user" do
-        pending
-      end
+    #context "public" do
+      #let(:resource) { Spree::Wishlist.new(:is_private => false) }
+      #context "requested by same user" do
+        #before { resource.user = user }
+        #pending
+        #it_should_behave_like "allow CRUD"
+      #end
+      #context "requested by other user" do
+        #pending
+      #end
 
-    end
-  end
+    #end
+  #end
 end
