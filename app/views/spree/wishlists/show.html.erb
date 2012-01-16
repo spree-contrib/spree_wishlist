@@ -62,7 +62,7 @@
         <%= wish.created_at %>
       </td>
       <td>
-        <%= product_price(variant) %>
+        <%= number_to_currency(variant.price) %>
       </td>
     </tr>
     <% end -%>
