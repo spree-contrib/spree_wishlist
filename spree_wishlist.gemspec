@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency 'spree_core', '>= 1.0.0'
+  s.add_dependency 'spree_auth', '>= 1.0.0'
 
   s.add_development_dependency 'factory_girl'
   s.add_development_dependency 'rspec-rails',  '~> 2.8.0.rc1'
