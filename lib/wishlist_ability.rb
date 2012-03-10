@@ -27,7 +27,7 @@ class WishlistAbility
     can :read, Spree::WishedProduct do |wished_product|
       wished_product.wishlist.user == user || wished_product.wishlist.is_public?
     end
-    can [:index, :update, :delete], Spree::WishedProduct do |wished_product|
+    can [:index, :update, :destroy], Spree::WishedProduct do |wished_product|
       wished_product.wishlist.user == user
     end
   end
