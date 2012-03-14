@@ -12,7 +12,7 @@ of a recommended product.
 1. Add the following to your Gemfile
 
 <pre>
-    gem 'spree_wishlist', :git => 'git://github.com/spree/spree_wishlist.git'
+    gem 'spree_wishlist', '~> 1.3'
     gem 'spree_email_to_friend'
 </pre>
 
