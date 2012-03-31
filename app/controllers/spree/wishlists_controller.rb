@@ -1,4 +1,4 @@
-class Spree::WishlistsController < Spree::BaseController
+class Spree::WishlistsController < Spree::StoreController
   helper 'spree/products'
 
   respond_to :html
@@ -31,7 +31,7 @@ class Spree::WishlistsController < Spree::BaseController
 
   def create
     @wishlist = Spree::Wishlist.new(params[:wishlist])
-    @wishlist.user = current_user
+    @wishlist.user = spree_current_user
 
     @wishlist.save
     respond_with(@wishlist)

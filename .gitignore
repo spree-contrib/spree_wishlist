@@ -2,3 +2,5 @@ spec/dummy
 spec/test_app
 Gemfile.lock
 *.swp
+.bundle
+.rvmrc

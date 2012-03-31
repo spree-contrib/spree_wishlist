@@ -21,10 +21,9 @@
     </tr>
   </thead>
   <tbody id="line_items">
-  <% if @wishlist.wished_products.size > 0 %>
-    <% @wishlist.wished_products.each do |wish|
-        variant = wish.variant
-        product = variant.product %>
+  <% if @wishlist.wished_products.active.size > 0 %>
+    <% @wishlist.wished_products.active.all.select{ |w| w.variant.present? }.each do |wish| %>
+      <% variant = wish.variant and product = variant.product %>
     <tr class="<%= cycle('', 'alt') %>">
     <% if @wishlist.user == current_user %>
       <td>
