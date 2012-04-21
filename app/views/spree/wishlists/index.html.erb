@@ -1,0 +1,6 @@
+<h1 class="row"><%= t(:wishlists) %></h1>
+<%= content_tag :ul do %>
+  <% @wishlists.each do |wishlist| %>
+    <%= content_tag :li, link_to(wishlist.name, wishlist) %>
+  <% end %>
+<% end %>

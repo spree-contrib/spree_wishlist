@@ -10,6 +10,12 @@ class Spree::WishlistsController < Spree::BaseController
     respond_with(@wishlist)
   end
 
+  def index
+    @wishlists = current_user.wishlists
+
+    respond_with(@wishlist)
+  end
+  
   def edit
     @wishlist = Spree::Wishlist.find_by_access_hash(params[:id])
 
