@@ -4,6 +4,8 @@ class Spree::Wishlist < ActiveRecord::Base
   before_create :set_access_hash
 
   validates :name, :presence => true
+  
+  attr_accessible :name, :is_default, :is_private
 
   def include?(variant_id)
     self.wished_products.map(&:variant_id).include? variant_id.to_i
