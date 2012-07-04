@@ -30,7 +30,7 @@ class Spree::WishlistsController < Spree::BaseController
   end
 
   def show
-    @wishlist = Spree::Wishlist.find_by_access_hash(params[:id])
+    @wishlist = Spree::Wishlist.find_by_access_hash(params[:id]) || current_user.wishlist
 
     respond_with(@wishlist)
   end
