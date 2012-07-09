@@ -30,11 +30,19 @@ class Spree::WishlistsController < Spree::BaseController
   end
 
   def show
-    @wishlist = Spree::Wishlist.find_by_access_hash(params[:id]) || current_user.wishlist
+    @wishlist = Spree::Wishlist.find_by_access_hash(params[:id])
 
     respond_with(@wishlist)
   end
-
+  
+  def default
+    @wishlist = current_user.wishlist
+    
+    respond_with(@wishlist)do |format|
+      format.html { render 'show' }
+    end
+  end
+  
   def create
     @wishlist = Spree::Wishlist.new(params[:wishlist])
     @wishlist.user = current_user
