@@ -1,5 +1,5 @@
 class Spree::Wishlist < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :user, :class_name => Spree.user_class.to_s, :foreign_key => 'user_id'
   has_many :wished_products
   before_create :set_access_hash
 
