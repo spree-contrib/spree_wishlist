@@ -1,12 +1,13 @@
 class Spree::Wishlist < ActiveRecord::Base
   belongs_to :user, :class_name => Spree.user_class.to_s, :foreign_key => 'user_id'
   has_many :wished_products
+
   before_create :set_access_hash
 
   validates :name, :presence => true
 
   def include?(variant_id)
-    self.wished_products.map(&:variant_id).include? variant_id.to_i
+    self.wished_products.active.map(&:variant_id).include? variant_id.to_i
   end
 
   def to_param
