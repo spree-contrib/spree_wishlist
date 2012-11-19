@@ -1,6 +1,5 @@
 class Spree::Wishlist < ActiveRecord::Base
-  belongs_to :user, :class_name => Spree.user_class
-    
+  belongs_to :user, :class_name => Spree.user_class 
   has_many :wished_products
   before_create :set_access_hash
 
@@ -43,5 +42,4 @@ class Spree::Wishlist < ActiveRecord::Base
     random_string = SecureRandom::hex(16)
     self.access_hash = Digest::SHA1.hexdigest("--#{user_id}--#{random_string}--#{Time.now}--")
   end  
-  
 end
