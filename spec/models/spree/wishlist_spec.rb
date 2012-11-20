@@ -6,6 +6,14 @@ describe Spree::Wishlist do
     @wishlist = Spree::Wishlist.new(:user => @user, :name => "My Wishlist")
   end
 
+  context "can't mass assign ids" do
+    it "should not be able to assign variant_id" do
+      lambda {
+        Spree::Wishlist.new(:user_id => @user.id, :name => "My Wishlist")  
+      }.should raise_error
+    end
+  end
+  
   context "creating a new wishlist" do
     it "is valid with valid attributes" do
       @wishlist.should be_valid
@@ -29,7 +37,7 @@ describe Spree::Wishlist do
       @wishlist.include?(@variant.id).should be_true
     end
   end
-
+  
   context "#to_param" do
     it "should return the wishlist's access_hash" do
       @wishlist.to_param.should == @wishlist.access_hash

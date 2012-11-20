@@ -20,5 +20,5 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'factory_girl', '2.6.4'
   s.add_development_dependency 'rspec-rails',  '~> 2.11.0'
-  s.add_development_dependency 'sqlite3'
+  s.add_development_dependency 'sqlite3', '~> 1.3.5'
 end
