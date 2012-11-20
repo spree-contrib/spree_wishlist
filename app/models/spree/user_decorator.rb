@@ -1,5 +1,5 @@
-Spree::User.class_eval do
-  has_many :wishlists
+Spree.user_class.class_eval do
+  has_many :wishlists, :class_name => Spree::Wishlist
 
   def wishlist
     default_wishlist = self.wishlists.first(:conditions => ["is_default = ?", true])
