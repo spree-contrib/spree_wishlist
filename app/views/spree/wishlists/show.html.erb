@@ -22,7 +22,7 @@
   </thead>
   <tbody id="line_items">
   <% if @wishlist.wished_products.active.size > 0 %>
-    <% @wishlist.wished_products.active.each do |wish|
+    <% @wishlist.wished_products.active.select{ |w| w.variant.product.present? }.each do |wish|
         variant = wish.variant
         product = variant.product %>
     <tr class="<%= cycle('', 'alt') %>">
