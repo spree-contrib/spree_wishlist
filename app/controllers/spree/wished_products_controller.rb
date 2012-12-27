@@ -1,4 +1,4 @@
-class Spree::WishedProductsController < Spree::BaseController
+class Spree::WishedProductsController < Spree::StoreController
   respond_to :html
 
   def create
