@@ -1,7 +1,7 @@
 class Spree::Wishlist < ActiveRecord::Base
   belongs_to :user, :class_name => Spree.user_class.to_s, :foreign_key => 'user_id'
   has_many :wished_products
-  attr_accessible :name, :is_private, :is_default
+  attr_protected :id
   before_create :set_access_hash
 
   validates :name, :presence => true
