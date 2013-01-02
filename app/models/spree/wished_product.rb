@@ -4,5 +4,5 @@ class Spree::WishedProduct < ActiveRecord::Base
 
   scope :active, includes(:variant).where("spree_variants.deleted_at IS NULL")
 
-  attr_accessible :variant
+  attr_accessible :variant_id
 end
