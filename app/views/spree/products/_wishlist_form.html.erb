@@ -1,4 +1,4 @@
-<% if current_user %>
+<% if spree_current_user %>
   <div id="wishlist-form">
     <%= form_for Spree::WishedProduct.new do |f| %>
       <%= f.hidden_field :variant_id, :value => @product.master.id %>

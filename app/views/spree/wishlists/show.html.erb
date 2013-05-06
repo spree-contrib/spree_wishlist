@@ -1,6 +1,6 @@
 <div id="wishlist_header" class="row">
   <h1><%= @wishlist.name %></h1>
-  <% if @wishlist.user == current_user %>
+  <% if @wishlist.user == spree_current_user %>
     <div id="manage_wishlist_links">
       <%= link_to t(:edit_wishlist), edit_wishlist_path(@wishlist), :class => 'button' %>
     </div>
@@ -10,7 +10,7 @@
 <table id="wishlist">
   <thead>
     <tr>
-      <% if @wishlist.user == current_user %>
+      <% if @wishlist.user == spree_current_user %>
         <th><%= t(:wishlist_actions) %></th>
       <% end -%>
       <th><%= t(:item_view) %></th>
@@ -26,17 +26,17 @@
         variant = wish.variant
         product = variant.product %>
     <tr class="<%= cycle('', 'alt') %>">
-    <% if @wishlist.user == current_user %>
+    <% if @wishlist.user == spree_current_user %>
       <td>
         <p><%= link_to t(:remove_from_wishlist), wish, :method => :delete, :class => 'button' %></p>
         <%= form_for :order, :url => populate_orders_url do |f| %>
           <%= hidden_field_tag "variants[#{variant.id}]", 1, :size => 3 %>
           <%= link_to t(:add_to_cart), '#', :onclick => "$(this).parent().submit(); return false;", :class => "button" %>
         <% end %>
-        <% if current_user.wishlists.count > 1 %>
+        <% if spree_current_user.wishlists.count > 1 %>
           <%= t(:move_to_another_wishlist) %>:
           <%= form_for wish do |f| %>
-            <%= f.select :wishlist_id, current_user.wishlists.map{|wl| [wl.name, wl.id]} %>
+            <%= f.select :wishlist_id, spree_current_user.wishlists.map{|wl| [wl.name, wl.id]} %>
             <%= f.submit t(:move) %>
           <% end %>
         <% end %>
@@ -74,7 +74,7 @@
   </tbody>
 </table>
 <div class="footer_links" data-hook="wishlist_footer_links">
-<% if @wishlist.user == current_user %>
+<% if @wishlist.user == spree_current_user %>
   <%= link_to t(:create_new_wishlist), new_wishlist_path, :class => "button" %>
 <% end -%>
 <%= link_to t(:continue_shopping), products_path, :class => "button" %>
