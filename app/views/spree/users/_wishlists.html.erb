@@ -1,7 +1,7 @@
 <h3><%= t(:my_wishlists) %></h3>
 <ul>
 <% @user.wishlists.each do |wl| %>
-  <% if !wl.is_private? || @user == current_user %>
+  <% if !wl.is_private? || @user == spree_current_user %>
   <li><%= link_to wl.name, wl %></li>
   <% end -%>
 <% end -%>
