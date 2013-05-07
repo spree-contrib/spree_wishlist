@@ -1,8 +1,6 @@
-source "http://rubygems.org"
+source "https://rubygems.org"
 
-group :test do
-  gem 'faker'
-end
+gem 'spree', github: 'spree/spree'
 
 # Specify your dependencies in spree_wishlist.gemspec
 gemspec

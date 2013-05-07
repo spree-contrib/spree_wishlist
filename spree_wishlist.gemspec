@@ -16,9 +16,10 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.require_paths = ["lib"]
 
-  s.add_dependency 'spree_core', '>= 1.2.0'
+  s.add_dependency 'spree_core', '>= 2.0.0.beta'
 
-  s.add_development_dependency 'factory_girl', '2.6.4'
+  s.add_development_dependency 'factory_girl', '~> 4.2'
+  s.add_development_dependency 'ffaker'
   s.add_development_dependency 'rspec-rails',  '~> 2.11.0'
   s.add_development_dependency 'sqlite3', '~> 1.3.5'
 end

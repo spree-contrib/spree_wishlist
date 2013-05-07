@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../../spec_helper'
 
 describe Spree::Wishlist do
   before(:each) do
-    @user = Factory(:user)
+    @user = FactoryGirl.create(:user)
     @wishlist = Spree::Wishlist.new(:user => @user, :name => "My Wishlist")
   end
 
@@ -27,7 +27,7 @@ describe Spree::Wishlist do
 
   context "#include?" do
     before(:each) do
-      @variant = Factory(:variant)
+      @variant = FactoryGirl.create(:variant)
       wished_product = Spree::WishedProduct.new(:variant => @variant)
       @wishlist.wished_products << wished_product
       @wishlist.save
@@ -55,7 +55,7 @@ describe Spree::Wishlist do
       end
 
       it "is false when the user does not own the wishlist" do
-        other_user = Factory(:user)
+        other_user = FactoryGirl.create(:user)
         @wishlist.can_be_read_by?(other_user).should be_false
       end
     end
@@ -63,7 +63,7 @@ describe Spree::Wishlist do
     context "when the wishlist is public" do
       it "is true for any user" do
         @wishlist.is_private = false
-        other_user = Factory(:user)
+        other_user = FactoryGirl.create(:user)
         @wishlist.can_be_read_by?(other_user).should be_true
       end
     end

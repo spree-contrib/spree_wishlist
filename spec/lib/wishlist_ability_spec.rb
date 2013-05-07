@@ -3,8 +3,8 @@ require 'cancan/matchers'
 
 describe WishlistAbility do
 
-  let(:user) { Factory(:user) }
-  let(:ability) { WishlistAbility.new(Factory(:user)) }
+  let(:user) { FactoryGirl.create(:user) }
+  let(:ability) { WishlistAbility.new(FactoryGirl.create(:user)) }
   let(:token) { nil }
 
   TOKEN = "token123"
