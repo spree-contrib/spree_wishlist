@@ -1,4 +1,4 @@
-<h3><%= t(:my_wishlists) %></h3>
+<h3><%= Spree.t(:my_wishlists) %></h3>
 <ul>
 <% @user.wishlists.each do |wl| %>
   <% if !wl.is_private? || @user == spree_current_user %>
