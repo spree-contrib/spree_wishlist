@@ -2,7 +2,7 @@
   <h1><%= @wishlist.name %></h1>
   <% if @wishlist.user == spree_current_user %>
     <div id="manage_wishlist_links">
-      <%= link_to t(:edit_wishlist), edit_wishlist_path(@wishlist), :class => 'button' %>
+      <%= link_to Spree.t(:edit_wishlist), edit_wishlist_path(@wishlist), :class => 'button' %>
     </div>
     <div><%= render :partial => 'accessibility' %></div>
   <% end -%>
@@ -11,13 +11,13 @@
   <thead>
     <tr>
       <% if @wishlist.user == spree_current_user %>
-        <th><%= t(:wishlist_actions) %></th>
+        <th><%= Spree.t(:wishlist_actions) %></th>
       <% end -%>
-      <th><%= t(:item_view) %></th>
-      <th><%= t(:item_description) %></th>
-      <th><%= t(:availability) %></th>
-      <th><%= t(:date_added) %></th>
-      <th><%= t(:price) %></th>
+      <th><%= Spree.t(:item_view) %></th>
+      <th><%= Spree.t(:item_description) %></th>
+      <th><%= Spree.t(:availability) %></th>
+      <th><%= Spree.t(:date_added) %></th>
+      <th><%= Spree.t(:price) %></th>
     </tr>
   </thead>
   <tbody id="line_items">
@@ -28,16 +28,16 @@
     <tr class="<%= cycle('', 'alt') %>">
     <% if @wishlist.user == spree_current_user %>
       <td>
-        <p><%= link_to t(:remove_from_wishlist), wish, :method => :delete, :class => 'button' %></p>
+        <p><%= link_to Spree.t(:remove_from_wishlist), wish, :method => :delete, :class => 'button' %></p>
         <%= form_for :order, :url => populate_orders_url do |f| %>
           <%= hidden_field_tag "variants[#{variant.id}]", 1, :size => 3 %>
-          <%= link_to t(:add_to_cart), '#', :onclick => "$(this).parent().submit(); return false;", :class => "button" %>
+          <%= link_to Spree.t(:add_to_cart), '#', :onclick => "$(this).parenSpree.t().submiSpree.t(); return false;", :class => "button" %>
         <% end %>
         <% if spree_current_user.wishlists.count > 1 %>
-          <%= t(:move_to_another_wishlist) %>:
+          <%= Spree.t(:move_to_another_wishlist) %>:
           <%= form_for wish do |f| %>
             <%= f.select :wishlist_id, spree_current_user.wishlists.map{|wl| [wl.name, wl.id]} %>
-            <%= f.submit t(:move) %>
+            <%= f.submit Spree.t(:move) %>
           <% end %>
         <% end %>
         <br />
@@ -56,7 +56,7 @@
         <%= truncate(product.description, :length => 100, :omission => "...") %>
       </td>
       <td>
-        <%= variant.in_stock? ? t(:in_stock) : t(:out_of_stock) %>
+        <%= variant.in_stock? ? Spree.t(:in_stock) : Spree.t(:out_of_stock) %>
       </td>
       <td>
         <%= wish.created_at.strftime "%m/%d/%Y" %>
@@ -68,17 +68,17 @@
     <% end -%>
   <% else -%>
     <tr>
-      <td colspan="6"><%= t(:your_wishlist_is_empty) %></td>
+      <td colspan="6"><%= Spree.t(:your_wishlist_is_empty) %></td>
     </tr>
   <% end -%>
   </tbody>
 </table>
 <div class="footer_links" data-hook="wishlist_footer_links">
 <% if @wishlist.user == spree_current_user %>
-  <%= link_to t(:create_new_wishlist), new_wishlist_path, :class => "button" %>
+  <%= link_to Spree.t(:create_new_wishlist), new_wishlist_path, :class => "button" %>
 <% end -%>
-<%= link_to t(:continue_shopping), products_path, :class => "button" %>
+<%= link_to Spree.t(:continue_shopping), products_path, :class => "button" %>
 <% if respond_to?(:email_to_friend_url) %>
-  <%= link_to t('email_to_friend.send_to_friend'), email_to_friend_url('wishlist', @wishlist), :class => "button" %>
+  <%= link_to Spree.t('email_to_friend.send_to_friend'), email_to_friend_url('wishlist', @wishlist), :class => "button" %>
 <% end %>
 </div>
