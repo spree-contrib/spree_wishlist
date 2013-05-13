@@ -1,27 +1,28 @@
 pl:
-  add_to_wishlist: "Dodaj do listy życzeń"
-  "Are you sure that you want to delete this wishlist?": "Czy na pewno chesz usunąć listę życzeń?"
-  availability: "Dostępność"
-  create_new_wishlist: "Utwórz nową listę życzeń."
-  creating_wishlist: "Tworzenie listy życzeń"
-  date_added: "Data dodana"
-  delete_wishlist: "Usuń listę życzeń"
-  edit_wishlist: "Edytuj listę życzeń"
-  editing_wishlist: "Edycja listy życzeń"
-  in_stock: "Dostępny"
-  is_default: "domyślny"
-  is_private: "prywatny"
-  item_view: "Widok"
-  move: Przenieś
-  move_to_another_wishlist: Przenieś do innej listy
-  my_wishlists: Moje listy życzeń
-  private_wishlist: Prywatna
-  private: Prywatna
-  public_wishlist: Publiczna
-  public: Publiczna
-  remove_from_wishlist: Usuń z listy życzeń
-  wishlist_actions: Akcje
-  your_wishlist_is_empty: Twoja lista życzeń jest pusta
-  update_quantity: Przelicz
-  item_added_to_wishlist: Dodano produkt do listy życzeń
+  spree:
+    add_to_wishlist: "Dodaj do listy życzeń"
+    "Are you sure that you want to delete this wishlist?": "Czy na pewno chesz usunąć listę życzeń?"
+    availability: "Dostępność"
+    create_new_wishlist: "Utwórz nową listę życzeń."
+    creating_wishlist: "Tworzenie listy życzeń"
+    date_added: "Data dodana"
+    delete_wishlist: "Usuń listę życzeń"
+    edit_wishlist: "Edytuj listę życzeń"
+    editing_wishlist: "Edycja listy życzeń"
+    in_stock: "Dostępny"
+    is_default: "domyślny"
+    is_private: "prywatny"
+    item_view: "Widok"
+    move: Przenieś
+    move_to_another_wishlist: Przenieś do innej listy
+    my_wishlists: Moje listy życzeń
+    private_wishlist: Prywatna
+    private: Prywatna
+    public_wishlist: Publiczna
+    public: Publiczna
+    remove_from_wishlist: Usuń z listy życzeń
+    wishlist_actions: Akcje
+    your_wishlist_is_empty: Twoja lista życzeń jest pusta
+    update_quantity: Przelicz
+    item_added_to_wishlist: Dodano produkt do listy życzeń
 
