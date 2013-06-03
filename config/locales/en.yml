@@ -20,7 +20,6 @@ en:
     private: "Private"
     public_wishlist: "Public wishlist"
     public: "Public"
-    purchase: "Purchase"
     remove_from_wishlist: "Remove from wishlist"
     wishlist_actions: "Actions"
     your_wishlist_is_empty: "Your wishlist is empty"
