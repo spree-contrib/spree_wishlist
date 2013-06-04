@@ -56,7 +56,7 @@
         <%= truncate(product.description, :length => 100, :omission => "...") %>
       </td>
       <td>
-        <%= variant.in_stock? ? Spree.t(:in_stock) : Spree.t(:out_of_stock) %>
+        <%= variant.in_any_stock? ? Spree.t(:in_stock) : Spree.t(:out_of_stock) %>
       </td>
       <td>
         <%= wish.created_at.strftime "%m/%d/%Y" %>
