@@ -25,3 +25,4 @@ en:
     your_wishlist_is_empty: "Your wishlist is empty"
     update_quantity: "Update quantity"
     item_added_to_wishlist: "Item added to wishlist"
+    default_wishlist_name: "My wishlist"
