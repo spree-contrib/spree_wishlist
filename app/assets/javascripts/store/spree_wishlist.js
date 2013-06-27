@@ -1,6 +1,6 @@
 $(function() {
 
-$("#new_spree_wished_product").submit(function() {
+$("#new_wished_product").submit(function() {
   selected_variant_id = $("#product-variants input[type=radio]:checked").val();
   if (selected_variant_id)
   {
