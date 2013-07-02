@@ -1,6 +1,8 @@
 class Spree::WishlistsController < Spree::StoreController
   helper 'spree/products'
 
+  before_filter :find_wishlist, :only => [:destroy, :show, :update, :edit]
+
   respond_to :html
   respond_to :js, :only => [:update]
 
@@ -17,21 +19,16 @@ class Spree::WishlistsController < Spree::StoreController
   end
   
   def edit
-    @wishlist = Spree::Wishlist.find_by_access_hash(params[:id])
-
     respond_with(@wishlist)
   end
 
   def update
-    @wishlist = Spree::Wishlist.find_by_access_hash(params[:id])
     @wishlist.update_attributes(params[:wishlist])
 
     respond_with(@wishlist)
   end
 
   def show
-    @wishlist = Spree::Wishlist.find_by_access_hash(params[:id])
-
     respond_with(@wishlist)
   end
   
@@ -52,11 +49,17 @@ class Spree::WishlistsController < Spree::StoreController
   end
 
   def destroy
-    @wishlist = Spree::Wishlist.find_by_access_hash(params[:id])
     @wishlist.destroy
     respond_with(@wishlist )do |format|
       format.html { redirect_to account_path }
     end
+  end
+
+  private
+
+  # Isolate this method so it can be overwritten
+  def find_wishlist
+    @wishlist = Spree::Wishlist.find_by_access_hash(params[:id])
   end
 
 end
