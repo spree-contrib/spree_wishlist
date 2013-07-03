@@ -17,9 +17,15 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency 'spree_core', '>= 2.0.0.beta'
+  s.add_dependency 'spree_auth_devise', '>= 2.0.0.beta'
 
   s.add_development_dependency 'factory_girl', '~> 4.2'
   s.add_development_dependency 'ffaker'
   s.add_development_dependency 'rspec-rails',  '~> 2.11.0'
   s.add_development_dependency 'sqlite3', '~> 1.3.5'
+  s.add_development_dependency 'capybara'
+  s.add_development_dependency 'capybara-screenshot'
+  s.add_development_dependency 'poltergeist'
+  s.add_development_dependency 'database_cleaner'
+  s.add_development_dependency 'simplecov'
 end
