@@ -5,8 +5,6 @@ class Spree::Wishlist < ActiveRecord::Base
 
   validates :name, :presence => true
 
-  #attr_accessible :name, :is_default, :is_private, :user
-
   def include?(variant_id)
     self.wished_products.map(&:variant_id).include? variant_id.to_i
   end
