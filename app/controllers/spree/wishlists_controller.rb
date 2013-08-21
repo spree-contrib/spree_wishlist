@@ -17,13 +17,13 @@ class Spree::WishlistsController < Spree::StoreController
 
     respond_with(@wishlist)
   end
-  
+
   def edit
     respond_with(@wishlist)
   end
 
   def update
-    @wishlist.update_attributes(params[:wishlist])
+    @wishlist.update_attributes withlist_attributes
 
     respond_with(@wishlist)
   end
@@ -31,17 +31,17 @@ class Spree::WishlistsController < Spree::StoreController
   def show
     respond_with(@wishlist)
   end
-  
+
   def default
     @wishlist = spree_current_user.wishlist
-    
+
     respond_with(@wishlist)do |format|
       format.html { render 'show' }
     end
   end
-  
+
   def create
-    @wishlist = Spree::Wishlist.new(params[:wishlist])
+    @wishlist = Spree::Wishlist.new withlist_attributes
     @wishlist.user = spree_current_user
 
     @wishlist.save
@@ -56,6 +56,10 @@ class Spree::WishlistsController < Spree::StoreController
   end
 
   private
+
+  def wishlist_attributes
+    params.require(:wishlist).permit(:name, :is_default, :is_private)
+  end
 
   # Isolate this method so it can be overwritten
   def find_wishlist
