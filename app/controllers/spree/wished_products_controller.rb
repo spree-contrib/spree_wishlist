@@ -2,7 +2,7 @@ class Spree::WishedProductsController < Spree::StoreController
   respond_to :html
 
   def create
-    @wished_product = Spree::WishedProduct.new(params[:wished_product])
+    @wished_product = Spree::WishedProduct.new(wished_product_attributes)
     @wishlist = spree_current_user.wishlist
 
     if @wishlist.include? params[:wished_product][:variant_id]
@@ -34,4 +34,11 @@ class Spree::WishedProductsController < Spree::StoreController
       format.html { redirect_to wishlist_url(@wished_product.wishlist) }
     end
   end
+
+  private
+
+  def wished_product_attributes
+    params.require(:wished_product).permit(:variant_id)
+  end
+
 end

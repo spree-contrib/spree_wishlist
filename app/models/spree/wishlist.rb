@@ -1,13 +1,11 @@
 class Spree::Wishlist < ActiveRecord::Base
-  belongs_to :user, :class_name => Spree.user_class 
+  belongs_to :user, :class_name => Spree.user_class
   has_many :wished_products
   before_create :set_access_hash
 
-  attr_accessible :name, :is_default, :is_private, :user
-    
   validates :name, :presence => true
-  
-  attr_accessible :name, :is_default, :is_private
+
+  #attr_accessible :name, :is_default, :is_private, :user
 
   def include?(variant_id)
     self.wished_products.map(&:variant_id).include? variant_id.to_i
@@ -41,5 +39,5 @@ class Spree::Wishlist < ActiveRecord::Base
   def set_access_hash
     random_string = SecureRandom::hex(16)
     self.access_hash = Digest::SHA1.hexdigest("--#{user_id}--#{random_string}--#{Time.now}--")
-  end  
+  end
 end
