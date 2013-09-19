@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.require_paths = ["lib"]
 
-  s.add_dependency 'spree_core', '~> 2.1.0.beta'
+  s.add_dependency 'spree_core', '~> 2.1.2.beta'
 
   s.add_development_dependency 'factory_girl', '~> 4.2'
   s.add_development_dependency 'ffaker'
@@ -25,6 +25,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'capybara'
   s.add_development_dependency 'capybara-screenshot'
   s.add_development_dependency 'poltergeist'
-  s.add_development_dependency 'database_cleaner'
+  s.add_development_dependency 'database_cleaner', '<= 1.0.1'
   s.add_development_dependency 'simplecov'
 end
