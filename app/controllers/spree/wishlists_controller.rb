@@ -23,7 +23,7 @@ class Spree::WishlistsController < Spree::StoreController
   end
 
   def update
-    @wishlist.update_attributes withlist_attributes
+    @wishlist.update_attributes wishlist_attributes
 
     respond_with(@wishlist)
   end
@@ -41,7 +41,7 @@ class Spree::WishlistsController < Spree::StoreController
   end
 
   def create
-    @wishlist = Spree::Wishlist.new withlist_attributes
+    @wishlist = Spree::Wishlist.new witslist_attributes
     @wishlist.user = spree_current_user
 
     @wishlist.save
