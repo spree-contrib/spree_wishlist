@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_wishlist'
-  s.version     = '1.3'
+  s.version     = '2.2'
   s.summary     = 'Add wishlists to Spree'
   s.homepage    = 'https://github.com/spree/spree_wishlist'
   s.required_ruby_version = '>= 1.8.7'
