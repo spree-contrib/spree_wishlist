@@ -1,6 +1,10 @@
-<h1><%= t(:creating_wishlist) %></h1>
+<h1 class="row"><%= t(:creating_wishlist) %></h1>
 <%= form_for @wishlist do |f| %>
-  <p><%= f.label :name, t(:name) %>:&nbsp;<%= f.text_field :name %></p>
-  <p><%= f.check_box :is_private %>&nbsp;<%= f.label :is_private, t(:is_private) %></p>
-  <%= f.submit t(:create) %>
+  <p>
+  	<%= f.label :name, t(:name) %>: <%= f.text_field :name %>
+  </p>
+  <p>
+  	<%= f.check_box :is_private %> <%= f.label :is_private, t(:is_private) %>
+  </p>
+  <%= f.submit t(:create), :class => 'button' %>
 <% end -%>
