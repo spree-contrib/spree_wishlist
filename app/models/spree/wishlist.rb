@@ -24,7 +24,7 @@ class Spree::Wishlist < ActiveRecord::Base
   def is_default=(value)
     self['is_default'] = value
     if self.is_default?
-      Spree::Wishlist.update_all({:is_default => false}, ["id != ? AND is_default = ? AND user_id = ?", self.id, true, self.user_id])
+      Spree::Wishlist.where("id != ? AND is_default = ? AND user_id = ?", self.id, true, self.user_id).update_all(is_default: false)
     end
   end
 
