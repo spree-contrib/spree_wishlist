@@ -26,6 +26,7 @@
         variant = wish.variant
         product = variant.product %>
     <tr class="<%= cycle('', 'alt') %>">
+
     <% if @wishlist.user == spree_current_user %>
       <td>
         <p><%= link_to Spree.t(:remove_from_wishlist), wish, :method => :delete, :class => 'button' %></p>
@@ -43,6 +44,7 @@
         <br />
       </td>
     <% end -%>
+
       <td>
         <% if variant.images.length == 0 %>
           <%= small_image(variant.product) %>
@@ -56,7 +58,7 @@
         <%= truncate(product.description, :length => 100, :omission => "...") %>
       </td>
       <td>
-        <%= variant.in_stock? ? Spree.t(:in_stock) : Spree.t(:out_of_stock) %>
+        <%= variant.can_stock? ? Spree.t(:in_stock) : Spree.t(:out_of_stock) %>
       </td>
       <td>
         <%= wish.created_at.strftime "%m/%d/%Y" %>
