@@ -19,7 +19,7 @@ class Spree::WishedProductsController < Spree::StoreController
 
   def update
     @wished_product = Spree::WishedProduct.find(params[:id])
-    @wished_product.update_attributes(params[:wished_product])
+    @wished_product.update_attributes(wished_product_attributes)
 
     respond_with(@wished_product) do |format|
       format.html { redirect_to wishlist_url(@wished_product.wishlist) }
@@ -38,7 +38,7 @@ class Spree::WishedProductsController < Spree::StoreController
   private
 
   def wished_product_attributes
-    params.require(:wished_product).permit(:variant_id)
+    params.require(:wished_product).permit(:variant_id, :wishlist_id)
   end
 
 end
