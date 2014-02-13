@@ -1,31 +1,37 @@
-# Spree Wishlist extension
+# Spree Wishlist
 
-[![Build
-Status](https://secure.travis-ci.org/spree/spree_wishlist.png)](http://travis-ci.org/spree/spree_wishlist)
+[![Build Status](https://travis-ci.org/spree-contrib/spree_wishlist.svg?branch=2-1-stable)](https://travis-ci.org/spree-contrib/spree_wishlist)
+[![Code Climate](https://codeclimate.com/github/spree-contrib/spree_wishlist/badges/gpa.svg)](https://codeclimate.com/github/spree-contrib/spree_wishlist)
 
-The Spree Wishlist extension enables multiple wishlists per user, as well as managing those
-as public (sharable) and private.  It also includes the ability to notify a friend via email
-of a recommended product.
+The Spree Wishlist extension enables multiple wishlists per user, as well as managing those as public (sharable) and private. It also includes the ability to notify a friend via email of a recommended product.
+
+---
 
 ## Installation
 
-1. Add the following to your Gemfile
+Add the following to your `Gemfile`
+```ruby
+gem 'spree_wishlist', github: 'spree-contrib/spree_wishlist', branch: '2-1-stable'
+gem 'spree_email_to_friend', github: 'spree-contrib/spree_email_to_friend', branch: '2-1-stable'
+```
 
-<pre>
-    gem 'spree_wishlist', :git => 'git://github.com/spree/spree_wishlist.git'
-    gem 'spree_email_to_friend', :git => 'git://github.com/spree/spree_email_to_friend.git'
-</pre>
+Run
+```sh
+$ bundle install
+$ bundle exec rails g spree_wishlist:install
+```
 
-2. Run `bundle install`
+---
 
-3. To setup the asset pipeline includes and copy migrations run: `rails g spree_wishlist:install`
+## Contributing
 
-## Development
+[See corresponding guidelines][1]
 
-  * Fork the repo
-  * clone your repo
-  * Run `bundle`
-  * Run `bundle exec rake test_app` to create the test application in `spec/test_app`.
-  * Make your changes.
-  * Ensure specs pass by running `bundle exec rake`
-  * Submit your pull request
+---
+
+Copyright (c) 2014 [Spree Commerce Inc.][4] and [contributors][5], released under the [New BSD License][3]
+
+[1]: https://github.com/spree-contrib/spree_wishlist/blob/master/CONTRIBUTING.md
+[3]: https://github.com/spree-contrib/spree_wishlist/blob/master/LICENSE.md
+[4]: https://github.com/spree
+[5]: https://github.com/spree-contrib/spree_wishlist/graphs/contributors
