@@ -1,7 +1,8 @@
+---
 pl:
   spree:
     add_to_wishlist: "Dodaj do listy życzeń"
-    "Are you sure that you want to delete this wishlist?": "Czy na pewno chesz usunąć listę życzeń?"
+    are_you_sure_wishlist: "Czy na pewno chesz usunąć listę życzeń?"
     availability: "Dostępność"
     create_new_wishlist: "Utwórz nową listę życzeń."
     creating_wishlist: "Tworzenie listy życzeń"
@@ -25,4 +26,6 @@ pl:
     your_wishlist_is_empty: Twoja lista życzeń jest pusta
     update_quantity: Przelicz
     item_added_to_wishlist: Dodano produkt do listy życzeń
-
+    default_wishlist_name: "Listę życzeń"
+    take_a_look_at_my_wishlist: "Prosimy zapoznać się z listy życzeń:"
+    click_link_to_view_wishlist: "Kliknij poniższy link, aby zobaczyć %{name} stronę."

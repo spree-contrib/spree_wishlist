@@ -1,77 +1,82 @@
-require File.dirname(__FILE__) + '/../../spec_helper'
+require 'spec_helper'
 
 describe Spree::Wishlist do
+  let(:user) { create(:user) }
+  let(:wishlist) { create(:wishlist, user: user, name: 'My Wishlist') }
 
-  before(:each) do
-    @user = FactoryGirl.create(:user)
-    @wishlist = Spree::Wishlist.new(:user => @user, :name => "My Wishlist")
+  it { should belong_to(:user) }
+  it { should have_many(:wished_products) }
+  it { should validate_presence_of(:name) }
+
+  it 'has a valid factory' do
+    expect(wishlist).to be_valid
   end
 
-  context "creating a new wishlist" do
-    it "is valid with valid attributes" do
-      @wishlist.should be_valid
+  context '.include?' do
+    let(:variant) { create(:variant) }
+
+    before do
+      wished_product = create(:wished_product, variant: variant)
+      wishlist.wished_products << wished_product
+      wishlist.save
     end
 
-    it "is not valid without a name" do
-      @wishlist.name = nil
-      @wishlist.should_not be_valid
-    end
-  end
-
-  context "#include?" do
-    before(:each) do
-      @variant = FactoryGirl.create(:variant)
-      wished_product = Spree::WishedProduct.new(:variant => @variant)
-      @wishlist.wished_products << wished_product
-      @wishlist.save
-    end
-
-    it "should be true if the wishlist includes the specified variant" do
-      @wishlist.include?(@variant.id).should be_true
+    it 'is true if the wishlist includes the specified variant' do
+      expect(wishlist.include?(variant.id)).to be_true
     end
   end
 
-  context "#to_param" do
-    it "should return the wishlist's access_hash" do
-      @wishlist.to_param.should == @wishlist.access_hash
+  context '.to_param' do
+    it 'return the wishlists access_hash' do
+      expect(wishlist.to_param).to eq wishlist.access_hash
     end
   end
 
-  context "#can_be_read_by?" do
-    context "when the wishlist is private" do
-      before(:each) do
-        @wishlist.is_private = true
+  context '.get_by_param' do
+    it 'return the wishlist of the access_hash' do
+      hash = wishlist.access_hash
+      result = described_class.get_by_param(hash)
+      expect(result).to eq wishlist
+    end
+
+    it 'return nil when not found' do
+      result = described_class.get_by_param('nope')
+      expect(result).to be_nil
+    end
+  end
+
+  context '.can_be_read_by?' do
+    context 'when the wishlist is private' do
+      it 'is true when the user owns the wishlist' do
+        wishlist.is_private = true
+        expect(wishlist.can_be_read_by?(user)).to be_true
       end
 
-      it "is true when the user owns the wishlist" do
-        @wishlist.can_be_read_by?(@user).should be_true
-      end
-
-      it "is false when the user does not own the wishlist" do
-        other_user = FactoryGirl.create(:user)
-        @wishlist.can_be_read_by?(other_user).should be_false
+      it 'is false when the user does not own the wishlist' do
+        wishlist.is_private = true
+        other_user = create(:user)
+        expect(wishlist.can_be_read_by?(other_user)).to be_false
       end
     end
 
-    context "when the wishlist is public" do
-      it "is true for any user" do
-        @wishlist.is_private = false
-        other_user = FactoryGirl.create(:user)
-        @wishlist.can_be_read_by?(other_user).should be_true
+    context 'when the wishlist is public' do
+      it 'is true for any user' do
+        wishlist.is_private = false
+        other_user = create(:user)
+        expect(wishlist.can_be_read_by?(other_user)).to be_true
       end
     end
   end
 
-  context "#is_public?" do
-    it "is true when the wishlist is public" do
-      @wishlist.is_private = false
-      @wishlist.is_public?.should be_true
+  context '.is_public?' do
+    it 'is true when the wishlist is public' do
+      wishlist.is_private = false
+      expect(wishlist.is_public?).to be_true
     end
 
-    it "is false when the wishlist is private" do
-      @wishlist.is_private = true
-      @wishlist.is_public?.should_not be_true
+    it 'is false when the wishlist is private' do
+      wishlist.is_private = true
+      expect(wishlist.is_public?).not_to be_true
     end
   end
-
 end

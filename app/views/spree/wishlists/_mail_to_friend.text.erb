@@ -1,6 +1,6 @@
 <%= mail.recipient_name %>,
 
-Please, take a look to my wishlist:
+<%= Spree.t(:take_a_look_at_my_wishlist) %>
 
   * <%= wishlist.name %>
 
@@ -10,5 +10,5 @@ Please, take a look to my wishlist:
 
 <%= mail.sender_name %>
 
-Click the link below to view the <%= wishlist.name %> page.
+<%= Spree.t(:click_link_to_view_wishlist, name: wishlist.name) %>
 <%= wishlist_url(wishlist) %>

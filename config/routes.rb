@@ -1,4 +1,4 @@
-Spree::Core::Engine.routes.draw do
+Spree::Core::Engine.add_routes do
   resources :wishlists
   resources :wished_products, only: [:create, :update, :destroy]
   get '/wishlist' => "wishlists#default", as: "default_wishlist"

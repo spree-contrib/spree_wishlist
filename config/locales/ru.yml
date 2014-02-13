@@ -1,3 +1,4 @@
+---
 ru:
   spree:
     add_to_wishlist: "Добавить в список желаний"
@@ -26,3 +27,5 @@ ru:
     update_quantity: "Update quantity"
     item_added_to_wishlist: "Item added to wishlist"
     default_wishlist_name: "Мой список желаний"
+    take_a_look_at_my_wishlist: "Пожалуйста, взгляните на мой список желаний:"
+    click_link_to_view_wishlist: "Нажмите на ссылку ниже, чтобы посмотреть в %{имя} странице."

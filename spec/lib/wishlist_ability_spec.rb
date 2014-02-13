@@ -2,96 +2,57 @@ require 'spec_helper'
 require 'cancan/matchers'
 
 describe WishlistAbility do
+  let(:user)    { create(:user) }
+  let(:ability) { WishlistAbility.new(user) }
+  let(:token)   { nil }
 
-  let(:user) { FactoryGirl.create(:user) }
-  let(:ability) { WishlistAbility.new(FactoryGirl.create(:user)) }
-  let(:token) { nil }
+  subject { ability }
 
-  TOKEN = "token123"
+  context 'for Wishlist' do
+    context 'when private' do
+      let(:resource) { create(:wishlist, is_private: true, user: user) }
 
-  shared_examples_for "allow CRUD" do
-    it "should allow create" do
-      ability.should be_able_to(:create, resource, token)
+      context 'requested by same user' do
+        it_should_behave_like 'allow CRUD'
+      end
+
+      context 'requested by other user' do
+        subject { WishlistAbility.new(nil) }
+        it_should_behave_like 'access denied'
+        it_should_behave_like 'no index allowed'
+      end
     end
-    it "should allow read" do
-      ability.should be_able_to(:read, resource, token)
-    end
-    it "should allow update" do
-      ability.should be_able_to(:update, resource, token)
-    end
-    it "should allow destroy" do
-      ability.should be_able_to(:destroy, resource, token)
+
+    context 'when public' do
+      let(:resource) { create(:wishlist, is_private: false, user: user) }
+
+      context 'requested by same user' do
+        it_should_behave_like 'allow CRUD'
+      end
+
+      context 'requested by other user' do
+        subject { WishlistAbility.new(nil) }
+        it_should_behave_like 'read only'
+      end
     end
   end
 
-  shared_examples_for "access denied" do
-    it "should not allow read" do
-      ability.should_not be_able_to(:read, resource)
+  context 'for Wished Product' do
+    let(:resource) do
+      create(:wished_product,
+        wishlist: create(:wishlist, user: user),
+        variant:  create(:variant))
     end
-    it "should not allow create" do
-      ability.should_not be_able_to(:create, resource)
+
+    context 'requested by same user' do
+      subject { WishlistAbility.new(user) }
+      it_should_behave_like 'allow CRUD'
     end
-    it "should not allow update" do
-      ability.should_not be_able_to(:update, resource)
+
+    context 'requested by other user' do
+      subject { WishlistAbility.new(nil) }
+      it_should_behave_like 'access denied'
+      it_should_behave_like 'no index allowed'
     end
   end
-
-  shared_examples_for "no index allowed" do
-    it "should not allow index" do
-      ability.should_not be_able_to(:index, resource)
-    end
-  end
-
-  shared_examples_for "create only" do
-    it "should allow create" do
-      ability.should be_able_to(:create, resource)
-    end
-    it "should not allow read" do
-      ability.should_not be_able_to(:read, resource)
-    end
-    it "should not allow update" do
-      ability.should_not be_able_to(:update, resource)
-    end
-    it "should not allow index" do
-      ability.should_not be_able_to(:index, resource)
-    end
-  end
-
-  shared_examples_for "read only" do
-    it "should not allow create" do
-      ability.should_not be_able_to(:create, resource)
-    end
-    it "should allow read" do
-      ability.should be_able_to(:read, resource)
-    end
-    it "should not allow update" do
-      ability.should_not be_able_to(:update, resource)
-    end
-    it "should allow index" do
-      ability.should be_able_to(:index, resource)
-    end
-  end
-
-  #context "for Wishedproduct" do
-  #end
-
-  #context "for Wishlist" do
-    #context "private" do
-      #let(:resource) { Spree::Wishlist.new(:is_private => true) }
-      #pending
-    #end
-
-    #context "public" do
-      #let(:resource) { Spree::Wishlist.new(:is_private => false) }
-      #context "requested by same user" do
-        #before { resource.user = user }
-        #pending
-        #it_should_behave_like "allow CRUD"
-      #end
-      #context "requested by other user" do
-        #pending
-      #end
-
-    #end
-  #end
 end
