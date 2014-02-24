@@ -62,7 +62,7 @@
         <%= wish.created_at.strftime "%m/%d/%Y" %>
       </td>
       <td>
-        <%= number_to_currency(variant.price) %>
+        <%= display_price(variant) %>
       </td>
     </tr>
     <% end -%>
