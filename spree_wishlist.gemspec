@@ -16,15 +16,19 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.require_paths = ["lib"]
 
-  s.add_dependency 'spree_core', '~> 2.2.0.beta'
+  s.add_dependency 'spree_core', '~> 2.2.0'
 
-  s.add_development_dependency 'factory_girl', '~> 4.2'
+  s.add_development_dependency 'factory_girl', '~> 4.4'
   s.add_development_dependency 'ffaker'
-  s.add_development_dependency 'rspec-rails',  '~> 2.11.0'
-  s.add_development_dependency 'sqlite3', '~> 1.3.5'
-  s.add_development_dependency 'capybara'
-  s.add_development_dependency 'capybara-screenshot'
-  s.add_development_dependency 'poltergeist'
-  s.add_development_dependency 'database_cleaner'
-  s.add_development_dependency 'simplecov'
+  s.add_development_dependency 'rspec-rails',  '~> 2.14'
+  s.add_development_dependency 'sqlite3', '~> 1.3.8'
+  s.add_development_dependency 'capybara', '~> 2.2.1'
+  s.add_development_dependency 'poltergeist', '~> 1.5.0'
+  s.add_development_dependency 'database_cleaner', '~> 1.2.0'
+  s.add_development_dependency 'simplecov', '~> 0.7.1'
+  s.add_development_dependency 'shoulda-matchers', '~> 2.5'
+  s.add_development_dependency 'coffee-rails', '~> 4.0.0'
+  s.add_development_dependency 'sass-rails', '~> 4.0.0'
+  s.add_development_dependency 'guard-rspec'
+  s.add_development_dependency 'pry-rails'
 end

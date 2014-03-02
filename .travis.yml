@@ -1,6 +1,9 @@
 before_script:
-  - "bundle exec rake test_app"
-script: "DISPLAY=:99.0 bundle exec rspec spec"
+  - sh -e /etc/init.d/xvfb start
+  - export DISPLAY=:99.0
+  - bundle exec rake test_app
+script:
+  - bundle exec rspec spec
 notifications:
   email:
     - jdyer@spreecommerce.com
@@ -11,3 +14,4 @@ branches:
 rvm:
   - 1.9.3
   - 2.0.0
+  - 2.1.0
