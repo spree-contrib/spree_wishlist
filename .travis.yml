@@ -4,10 +4,11 @@ before_script:
   - export DISPLAY=:99.0
   - bundle exec rake test_app
 script:
-  - bundle exec rake
+  - bundle exec rspec spec
 notifications:
   email:
     - jdyer@spreecommerce.com
 rvm:
   - 1.9.3
   - 2.0.0
+  - 2.1.0

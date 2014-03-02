@@ -1,6 +1,7 @@
 # Spree Wishlist
 
 [![Build Status](https://api.travis-ci.org/spree/spree_wishlist.png?branch=master)](https://travis-ci.org/spree/spree_wishlist)
+[![Code Climate](https://codeclimate.com/github/spree/spree_wishlist.png)](https://codeclimate.com/github/spree/spree_wishlist)
 
 The Spree Wishlist extension enables multiple wishlists per user, as well as managing those as public (sharable) and private. It also includes the ability to notify a friend via email of a recommended product.
 
