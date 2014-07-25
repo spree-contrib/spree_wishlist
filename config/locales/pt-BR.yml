@@ -1,0 +1,31 @@
+---
+pt-BR:
+  spree:
+    add_to_wishlist: Adicionar à lista de desejos
+    are_you_sure_wishlist: Tem certeza que você deseja excluir esta lista de desejos?
+    availability: Disponibilidade
+    create_new_wishlist: Criar uma nova lista de desejos
+    creating_wishlist: Criando lista de desejos
+    date_added: Data adicionada
+    default_wishlist_name: Minha Lista
+    delete_wishlist: Apagar lista de desejos
+    edit_wishlist: Editar
+    editing_wishlist: Editar lista de desejos
+    in_stock: Em estoque
+    is_default: é o padrão
+    is_private: é privado
+    item_added_to_wishlist: Item adicionado à lista de desejos
+    item_view: Ver
+    move: Mover
+    move_to_another_wishlist: Mover para outra lista de desejos
+    my_wishlists: Minhas listas de desejos
+    private: Privado
+    private_wishlist: Lista privada
+    public: Público
+    public_wishlist: Lista pública
+    remove_from_wishlist: Remover
+    update_quantity: Atualizar quantidade
+    wishlist_actions: Ações
+    wishlists: Lista de Desejos
+    your_wishlist_is_empty: A sua lista está vazia
+    click_link_to_view_wishlist: 'Clique no link abaixo para visualizar a página %{name}.'
