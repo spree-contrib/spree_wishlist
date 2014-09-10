@@ -44,6 +44,7 @@ Starting point:
 * Run `bundle exec rake test_app` to create the test application in `spec/test_app`
 * Make your changes
 * Ensure specs pass by running `bundle exec rspec spec`
+* [PhantomJS][6] must be available in your PATH to pass the specs
 * Submit your pull request
 
 Copyright (c) 2014 [Spree Commerce Inc.][4] and [contributors][5], released under the [New BSD License][3]
@@ -53,3 +54,4 @@ Copyright (c) 2014 [Spree Commerce Inc.][4] and [contributors][5], released unde
 [3]: https://github.com/spree/spree_wishlist/blob/master/LICENSE.md
 [4]: https://github.com/spree
 [5]: https://github.com/spree/spree_wishlist/graphs/contributors
+[6]: http://phantomjs.org/download.html
