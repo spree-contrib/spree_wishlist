@@ -22,7 +22,7 @@ describe Spree::Wishlist do
     end
 
     it 'is true if the wishlist includes the specified variant' do
-      expect(wishlist.include?(variant.id)).to be_true
+      expect(wishlist.include?(variant.id)).to be true
     end
   end
 
@@ -49,13 +49,13 @@ describe Spree::Wishlist do
     context 'when the wishlist is private' do
       it 'is true when the user owns the wishlist' do
         wishlist.is_private = true
-        expect(wishlist.can_be_read_by?(user)).to be_true
+        expect(wishlist.can_be_read_by?(user)).to be true
       end
 
       it 'is false when the user does not own the wishlist' do
         wishlist.is_private = true
         other_user = create(:user)
-        expect(wishlist.can_be_read_by?(other_user)).to be_false
+        expect(wishlist.can_be_read_by?(other_user)).to be false
       end
     end
 
@@ -63,7 +63,7 @@ describe Spree::Wishlist do
       it 'is true for any user' do
         wishlist.is_private = false
         other_user = create(:user)
-        expect(wishlist.can_be_read_by?(other_user)).to be_true
+        expect(wishlist.can_be_read_by?(other_user)).to be true
       end
     end
   end
@@ -71,12 +71,12 @@ describe Spree::Wishlist do
   context '.is_public?' do
     it 'is true when the wishlist is public' do
       wishlist.is_private = false
-      expect(wishlist.is_public?).to be_true
+      expect(wishlist.is_public?).to be true
     end
 
     it 'is false when the wishlist is private' do
       wishlist.is_private = true
-      expect(wishlist.is_public?).not_to be_true
+      expect(wishlist.is_public?).not_to be true
     end
   end
 end

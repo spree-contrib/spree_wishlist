@@ -14,7 +14,7 @@ feature 'Wishlist', js: true do
         visit spree.product_path(product)
         click_button 'Add to wishlist'
 
-        expect(page).to have_text user.wishlists.first.name
+        expect(page).to have_content user.wishlists.first.name
       end
 
       scenario 'when user has an existing wishlist' do
@@ -28,7 +28,7 @@ feature 'Wishlist', js: true do
 
         click_button 'Create'
 
-        expect(page).to have_text 'A New Wishlist Name'
+        expect(page).to have_content 'A New Wishlist Name'
       end
 
       scenario 'when user makes use of the new wishlist path' do
@@ -36,7 +36,7 @@ feature 'Wishlist', js: true do
         fill_in 'Name', with: 'A New Wishlist Name'
         click_button 'Create'
 
-        expect(page).to have_text 'A New Wishlist Name'
+        expect(page).to have_content 'A New Wishlist Name'
       end
     end
   end
@@ -57,7 +57,7 @@ feature 'Wishlist', js: true do
 
         click_button 'Update'
 
-        expect(page).to have_text 'A New Wishlist Name'
+        expect(page).to have_content 'A New Wishlist Name'
       end
 
       context 'edit a wishlists is_private' do
@@ -125,7 +125,7 @@ feature 'Wishlist', js: true do
 
         click_link 'Delete wishlist'
 
-        expect(page).not_to have_text wishlist.name
+        expect(page).not_to have_content wishlist.name
       end
     end
   end

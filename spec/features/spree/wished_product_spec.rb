@@ -15,8 +15,8 @@ feature 'Wished Product', js: true do
 
       add_to_wishlist product
 
-      expect(page).to have_text wishlist.name
-      expect(page).to have_text product.name
+      expect(page).to have_content wishlist.name
+      expect(page).to have_content product.name
     end
 
     scenario 'when user has no default but with non-default wishlist' do
@@ -24,9 +24,9 @@ feature 'Wished Product', js: true do
 
       add_to_wishlist product
 
-      expect(wishlist.reload.is_default).to be_true
-      expect(page).to have_text wishlist.name
-      expect(page).to have_text product.name
+      expect(wishlist.reload.is_default).to be true
+      expect(page).to have_content wishlist.name
+      expect(page).to have_content product.name
     end
 
     scenario 'when user has no wishlist at all' do
@@ -35,8 +35,8 @@ feature 'Wished Product', js: true do
       add_to_wishlist product
 
       expect(user.wishlists.reload.count).to eq(1)
-      expect(page).to have_text user.wishlists.first.name
-      expect(page).to have_text product.name
+      expect(page).to have_content user.wishlists.first.name
+      expect(page).to have_content product.name
     end
   end
 
@@ -57,7 +57,7 @@ feature 'Wished Product', js: true do
       delete_link = delete_links.select { |link| link[:href] == wp_path }.first
       delete_link.click
 
-      expect(page).not_to have_text wished_product.variant.product.name
+      expect(page).not_to have_content wished_product.variant.product.name
     end
 
     scenario 'randomly from a wishlist with multiple wished products while maintaining ordering by date added' do
@@ -76,8 +76,8 @@ feature 'Wished Product', js: true do
       delete_link.click
       pattern = Regexp.new(wished_products.map { |wp| wp.variant.product.name }.join('.*'))
 
-      expect(page).not_to have_text wished_product.variant.product.name
-      expect(page).to have_text pattern
+      expect(page).not_to have_content wished_product.variant.product.name
+      expect(page).to have_content pattern
     end
   end
 
