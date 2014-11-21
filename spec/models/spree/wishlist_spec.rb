@@ -74,4 +74,19 @@ describe Spree::Wishlist do
     end
   end
 
+  context '#destroy' do
+    before(:each) do
+      @variant = FactoryGirl.create(:variant)
+      wished_product = Spree::WishedProduct.new(:variant => @variant)
+      @wishlist.wished_products << wished_product
+      @wishlist.save
+    end
+
+    it 'deletes associated wished products' do
+      expect {
+        @wishlist.destroy
+      }.to change(Spree::WishedProduct, :count).by(-1)
+    end
+  end
+
 end
