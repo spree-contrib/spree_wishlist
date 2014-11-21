@@ -77,4 +77,15 @@ describe Spree::Wishlist, type: :model do
       expect(wishlist.is_public?).not_to be true
     end
   end
+
+  context '#destroy' do
+    let!(:wished_product) { create(:wished_product) }
+
+    it 'deletes associated wished products' do
+      expect {
+        wished_product.wishlist.destroy
+      }.to change(Spree::WishedProduct, :count).by(-1)
+    end
+
+  end
 end
