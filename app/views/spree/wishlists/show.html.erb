@@ -30,7 +30,8 @@
       <td>
         <p><%= link_to Spree.t(:remove_from_wishlist), wish, :method => :delete, :class => 'button' %></p>
         <%= form_for :order, :url => populate_orders_url do |f| %>
-          <%= hidden_field_tag "variants[#{variant.id}]", 1, :size => 3 %>
+          <%= hidden_field_tag "variant_id", variant.id, :size => 3 %>
+          <%= hidden_field_tag "quantity", 1, :size => 3 %>
           <%= link_to Spree.t(:add_to_cart), '#', :onclick => "$(this).parent().submit(); return false;", :class => "button" %>
         <% end %>
         <% if spree_current_user.wishlists.count > 1 %>
