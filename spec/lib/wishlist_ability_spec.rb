@@ -1,7 +1,6 @@
-require 'spec_helper'
 require 'cancan/matchers'
 
-describe WishlistAbility do
+RSpec.describe WishlistAbility do
   let(:user)    { create(:user) }
   let(:ability) { WishlistAbility.new(user) }
   let(:token)   { nil }
@@ -17,7 +16,7 @@ describe WishlistAbility do
       end
 
       context 'requested by other user' do
-        subject { WishlistAbility.new(nil) }
+        subject { described_class.new(nil) }
         it_should_behave_like 'access denied'
         it_should_behave_like 'no index allowed'
       end
@@ -31,7 +30,7 @@ describe WishlistAbility do
       end
 
       context 'requested by other user' do
-        subject { WishlistAbility.new(nil) }
+        subject { described_class.new(nil) }
         it_should_behave_like 'read only'
       end
     end
@@ -45,12 +44,12 @@ describe WishlistAbility do
     end
 
     context 'requested by same user' do
-      subject { WishlistAbility.new(user) }
+      subject { described_class.new(user) }
       it_should_behave_like 'allow CRUD'
     end
 
     context 'requested by other user' do
-      subject { WishlistAbility.new(nil) }
+      subject { described_class.new(nil) }
       it_should_behave_like 'access denied'
       it_should_behave_like 'no index allowed'
     end

@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-feature 'Wished Product', js: true do
+RSpec.feature 'Wished Product', :js do
   given(:user) { create(:user) }
 
   context 'add' do

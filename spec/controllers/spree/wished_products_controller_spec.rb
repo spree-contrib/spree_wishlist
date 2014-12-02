@@ -1,15 +1,9 @@
-require 'spec_helper'
-
-describe Spree::WishedProductsController do
+RSpec.describe Spree::WishedProductsController, type: :controller do
   let(:user)           { create(:user) }
   let(:wished_product) { create(:wished_product) }
   let(:attributes)     { attributes_for(:wished_product) }
 
   before { allow(controller).to receive(:spree_current_user).and_return(user) }
-
-  it 'use Spree::WishedProductsController' do
-    expect(controller).to be_an_instance_of Spree::WishedProductsController
-  end
 
   context '#create' do
     context 'with valid params' do

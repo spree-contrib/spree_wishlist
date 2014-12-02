@@ -1,3 +1,7 @@
+require 'capybara/rspec'
+require 'capybara/rails'
+require 'capybara/poltergeist'
+
 module Spree
   module TestingSupport
     module CapybaraHelpers
@@ -15,4 +19,5 @@ end
 
 RSpec.configure do |config|
   config.include Spree::TestingSupport::CapybaraHelpers, type: :feature
+  Capybara.javascript_driver = :poltergeist
 end
