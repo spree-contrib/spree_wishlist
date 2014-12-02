@@ -60,6 +60,13 @@ RSpec.describe Spree::WishlistsController, type: :controller do
       spree_get :show, id: wishlist
       expect(assigns(:wishlist)).to eq wishlist
     end
+
+    # Regression test for issue #68
+    it 'raises record not found on invalid params' do
+      expect {
+        spree_get :show, id: 'nope'
+      }.to raise_error(ActiveRecord::RecordNotFound)
+    end
   end
 
   context '#default' do
