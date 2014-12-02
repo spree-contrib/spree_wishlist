@@ -5,12 +5,9 @@ module SpreeWishlist
     config.autoload_paths += %W(#{config.root}/lib)
 
     def self.activate
-      Dir.glob(File.join(File.dirname(__FILE__), "../../app/**/*_decorator*.rb")) do |c|
-        Rails.configuration.cache_classes ? require(c) : load(c)
-      end
-
-      Dir.glob(File.join(File.dirname(__FILE__), "../app/overrides/**/*.rb")) do |c|
-       Rails.configuration.cache_classes ? require(c) : load(c)
+      cache_klasses = %W(#{config.root}/app/**/*_decorator*.rb #{config.root}/app/overrides/*.rb)
+      Dir.glob(cache_klasses) do |klass|
+        Rails.configuration.cache_classes ? require(klass) : load(klass)
       end
       Spree::Ability.register_ability(WishlistAbility)
     end
