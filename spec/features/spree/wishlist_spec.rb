@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-feature 'Wishlist', js: true do
+RSpec.feature 'Wishlist', :js do
   context 'with no wishlist' do
     given!(:user) { create(:user) }
 
@@ -25,7 +23,6 @@ feature 'Wishlist', js: true do
         click_link 'Create new wishlist'
 
         fill_in 'Name', with: 'A New Wishlist Name'
-
         click_button 'Create'
 
         expect(page).to have_text 'A New Wishlist Name'
@@ -54,7 +51,6 @@ feature 'Wishlist', js: true do
         visit_edit_wishlist
 
         fill_in 'Name', with: 'A New Wishlist Name'
-
         click_button 'Update'
 
         expect(page).to have_text 'A New Wishlist Name'
@@ -68,7 +64,6 @@ feature 'Wishlist', js: true do
           visit_edit_wishlist
 
           uncheck 'is private'
-
           click_button 'Update'
 
           expect(page).to have_checked_field 'wishlist_is_private_false'
@@ -81,7 +76,6 @@ feature 'Wishlist', js: true do
           visit_edit_wishlist
 
           check 'is private'
-
           click_button 'Update'
 
           expect(page).to have_checked_field 'wishlist_is_private_true'
@@ -96,7 +90,6 @@ feature 'Wishlist', js: true do
           visit_edit_wishlist
 
           uncheck 'is default'
-
           click_button 'Update'
           click_link 'Edit wishlist'
 
@@ -110,7 +103,6 @@ feature 'Wishlist', js: true do
           visit_edit_wishlist
 
           check 'is default'
-
           click_button 'Update'
           click_link 'Edit wishlist'
 
@@ -122,7 +114,6 @@ feature 'Wishlist', js: true do
     context 'delete' do
       scenario 'delete a users wishlist' do
         visit_edit_wishlist
-
         click_link 'Delete wishlist'
 
         expect(page).not_to have_text wishlist.name

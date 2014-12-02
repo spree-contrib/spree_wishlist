@@ -1,14 +1,8 @@
-require 'spec_helper'
+RSpec.describe Spree::User, type: :model do
 
-describe Spree::User do
-  let(:user) { create(:user_with_wishlist) }
-  let(:attributes) { attributes_for(:user_with_wishlist) }
+  it { is_expected.to have_many(:wishlists).class_name(Spree::Wishlist) }
 
   it 'has a valid factory' do
     expect(build(:user_with_wishlist)).to be_valid
-  end
-
-  it 'create a new instance given a valid attribute' do
-    Spree::User.create! attributes
   end
 end

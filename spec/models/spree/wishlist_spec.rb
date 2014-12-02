@@ -1,12 +1,10 @@
-require 'spec_helper'
-
-describe Spree::Wishlist do
+RSpec.describe Spree::Wishlist, type: :model do
   let(:user) { create(:user) }
   let(:wishlist) { create(:wishlist, user: user, name: 'My Wishlist') }
 
-  it { should belong_to(:user) }
-  it { should have_many(:wished_products) }
-  it { should validate_presence_of(:name) }
+  it { is_expected.to belong_to(:user) }
+  it { is_expected.to have_many(:wished_products) }
+  it { is_expected.to validate_presence_of(:name) }
 
   it 'has a valid factory' do
     expect(wishlist).to be_valid
@@ -22,24 +20,24 @@ describe Spree::Wishlist do
     end
 
     it 'is true if the wishlist includes the specified variant' do
-      expect(wishlist.include?(variant.id)).to be_true
+      expect(wishlist.include?(variant.id)).to be true
     end
   end
 
   context '.to_param' do
-    it 'return the wishlists access_hash' do
+    it 'returns the wishlists access_hash' do
       expect(wishlist.to_param).to eq wishlist.access_hash
     end
   end
 
   context '.get_by_param' do
-    it 'return the wishlist of the access_hash' do
+    it 'returns the wishlist of the access_hash' do
       hash = wishlist.access_hash
       result = described_class.get_by_param(hash)
       expect(result).to eq wishlist
     end
 
-    it 'return nil when not found' do
+    it 'returns nil when not found' do
       result = described_class.get_by_param('nope')
       expect(result).to be_nil
     end
@@ -49,13 +47,13 @@ describe Spree::Wishlist do
     context 'when the wishlist is private' do
       it 'is true when the user owns the wishlist' do
         wishlist.is_private = true
-        expect(wishlist.can_be_read_by?(user)).to be_true
+        expect(wishlist.can_be_read_by?(user)).to be true
       end
 
       it 'is false when the user does not own the wishlist' do
         wishlist.is_private = true
         other_user = create(:user)
-        expect(wishlist.can_be_read_by?(other_user)).to be_false
+        expect(wishlist.can_be_read_by?(other_user)).to be false
       end
     end
 
@@ -63,7 +61,7 @@ describe Spree::Wishlist do
       it 'is true for any user' do
         wishlist.is_private = false
         other_user = create(:user)
-        expect(wishlist.can_be_read_by?(other_user)).to be_true
+        expect(wishlist.can_be_read_by?(other_user)).to be true
       end
     end
   end
@@ -71,12 +69,12 @@ describe Spree::Wishlist do
   context '.is_public?' do
     it 'is true when the wishlist is public' do
       wishlist.is_private = false
-      expect(wishlist.is_public?).to be_true
+      expect(wishlist.is_public?).to be true
     end
 
     it 'is false when the wishlist is private' do
       wishlist.is_private = true
-      expect(wishlist.is_public?).not_to be_true
+      expect(wishlist.is_public?).not_to be true
     end
   end
 end

@@ -1,15 +1,9 @@
-require 'spec_helper'
-
-describe Spree::WishedProductsController do
+RSpec.describe Spree::WishedProductsController, type: :controller do
   let(:user)           { create(:user) }
-  let(:wished_product) { create(:wished_product) }
+  let!(:wished_product) { create(:wished_product) }
   let(:attributes)     { attributes_for(:wished_product) }
 
-  before { controller.stub spree_current_user: user }
-
-  it 'use Spree::WishedProductsController' do
-    expect(controller).to be_an_instance_of Spree::WishedProductsController
-  end
+  before { allow(controller).to receive(:spree_current_user).and_return(user) }
 
   context '#create' do
     context 'with valid params' do
@@ -41,7 +35,7 @@ describe Spree::WishedProductsController do
     end
 
     context 'with invalid params' do
-      it 'raise error' do
+      it 'raises error' do
         expect { spree_post :create }.to raise_error
       end
     end
@@ -61,7 +55,7 @@ describe Spree::WishedProductsController do
     end
 
     context 'with invalid params' do
-      it 'raise error' do
+      it 'raises error' do
         expect { spree_put :update }.to raise_error
       end
     end
@@ -69,7 +63,6 @@ describe Spree::WishedProductsController do
 
   context '#destroy' do
     it 'destroys the requested wished_product' do
-      pending 'It seems to not get deleted properly'
       expect {
         spree_delete :destroy, id: wished_product
       }.to change(Spree::WishedProduct, :count).by(-1)

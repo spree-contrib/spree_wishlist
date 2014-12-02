@@ -4,7 +4,7 @@ Gemfile.lock
 *.swp
 /nbproject/private/
 .DS_Store
-/coverage
+coverage
 .rvmrc
 .ruby-gemset
 .ruby-version
