@@ -1,6 +1,6 @@
 RSpec.describe Spree::WishedProductsController, type: :controller do
   let(:user)           { create(:user) }
-  let(:wished_product) { create(:wished_product) }
+  let!(:wished_product) { create(:wished_product) }
   let(:attributes)     { attributes_for(:wished_product) }
 
   before { allow(controller).to receive(:spree_current_user).and_return(user) }
@@ -63,7 +63,6 @@ RSpec.describe Spree::WishedProductsController, type: :controller do
 
   context '#destroy' do
     it 'destroys the requested wished_product' do
-      skip 'It seems to not get deleted properly'
       expect {
         spree_delete :destroy, id: wished_product
       }.to change(Spree::WishedProduct, :count).by(-1)
