@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-feature 'Wished Product', js: true do
+RSpec.feature 'Wished Product', :js do
   given(:user) { create(:user) }
 
   context 'add' do
@@ -41,7 +39,7 @@ feature 'Wished Product', js: true do
   end
 
   context 'delete' do
-    given(:wishlist) { create(:wishlist, user: user)}
+    given(:wishlist) { create(:wishlist, user: user) }
 
     background do
       sign_in_as! user

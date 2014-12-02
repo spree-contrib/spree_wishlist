@@ -1,15 +1,9 @@
-require 'spec_helper'
-
-describe Spree::WishlistsController do
+RSpec.describe Spree::WishlistsController, type: :controller do
   let(:wishlist)   { create(:wishlist) }
   let(:user)       { wishlist.user }
   let(:attributes) { attributes_for(:wishlist) }
 
-  before { controller.stub spree_current_user: user }
-
-  it 'use Spree::WishlistsController' do
-    expect(controller).to be_an_instance_of Spree::WishlistsController
-  end
+  before { allow(controller).to receive(:spree_current_user).and_return(user) }
 
   context '#new' do
     it 'assigns a new wishlist as @wishlist' do
@@ -70,7 +64,7 @@ describe Spree::WishlistsController do
 
   context '#default' do
     it 'retrieves the default wishlist of the current user' do
-      Spree::User.any_instance.should_receive(:wishlist)
+      allow_any_instance_of(Spree::User).to receive(:wishlist)
       spree_get :default
     end
 
@@ -88,13 +82,13 @@ describe Spree::WishlistsController do
   context '#create' do
     it 'assigns @wishlist' do
       spree_post :create, wishlist: attributes
-      expect(assigns(:wishlist)).to be_an_instance_of Spree::Wishlist
+      expect(assigns(:wishlist)).to be_a Spree::Wishlist
     end
 
-     it 'sets the current user as the user of @wishlist' do
-       spree_post :create, wishlist: attributes
-       expect(assigns(:wishlist).user).to eq user
-     end
+    it 'sets the current user as the user of @wishlist' do
+      spree_post :create, wishlist: attributes
+      expect(assigns(:wishlist).user).to eq user
+    end
 
     context 'when the wishlist saves successfully' do
       it 'saves the new wishlist' do
