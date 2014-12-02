@@ -4,7 +4,6 @@
     $('#wished_product_variant_id').val selected_variant_id if selected_variant_id
 
   $('form#change_wishlist_accessibility').on 'submit', ->
-    console.log $(this).prop('action')
     $.post $(this).prop('action'), $(this).serialize(), null, 'script'
     false
 
