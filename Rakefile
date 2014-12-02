@@ -6,9 +6,9 @@ require 'spree/testing_support/common_rake'
 
 RSpec::Core::RakeTask.new
 
-task :default => [:spec]
+task default: :spec
 
-desc "Generates a dummy app for testing"
+desc 'Generates a dummy app for testing'
 task :test_app do
   ENV['LIB_NAME'] = 'spree_wishlist'
   Rake::Task['common:test_app'].invoke

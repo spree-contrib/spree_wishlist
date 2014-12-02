@@ -25,19 +25,19 @@ RSpec.describe Spree::Wishlist, type: :model do
   end
 
   context '.to_param' do
-    it 'return the wishlists access_hash' do
+    it 'returns the wishlists access_hash' do
       expect(wishlist.to_param).to eq wishlist.access_hash
     end
   end
 
   context '.get_by_param' do
-    it 'return the wishlist of the access_hash' do
+    it 'returns the wishlist of the access_hash' do
       hash = wishlist.access_hash
       result = described_class.get_by_param(hash)
       expect(result).to eq wishlist
     end
 
-    it 'return nil when not found' do
+    it 'returns nil when not found' do
       result = described_class.get_by_param('nope')
       expect(result).to be_nil
     end
@@ -86,6 +86,5 @@ RSpec.describe Spree::Wishlist, type: :model do
         wished_product.wishlist.destroy
       }.to change(Spree::WishedProduct, :count).by(-1)
     end
-
   end
 end

@@ -2,7 +2,7 @@ require 'cancan/matchers'
 
 RSpec.describe WishlistAbility do
   let(:user)    { create(:user) }
-  let(:ability) { WishlistAbility.new(user) }
+  let(:ability) { described_class.new(user) }
   let(:token)   { nil }
 
   subject { ability }
@@ -38,9 +38,11 @@ RSpec.describe WishlistAbility do
 
   context 'for Wished Product' do
     let(:resource) do
-      create(:wished_product,
+      create(
+        :wished_product,
         wishlist: create(:wishlist, user: user),
-        variant:  create(:variant))
+        variant:  create(:variant)
+      )
     end
 
     context 'requested by same user' do

@@ -35,7 +35,7 @@ RSpec.describe Spree::WishedProductsController, type: :controller do
     end
 
     context 'with invalid params' do
-      it 'raise error' do
+      it 'raises error' do
         expect { spree_post :create }.to raise_error
       end
     end
@@ -55,7 +55,7 @@ RSpec.describe Spree::WishedProductsController, type: :controller do
     end
 
     context 'with invalid params' do
-      it 'raise error' do
+      it 'raises error' do
         expect { spree_put :update }.to raise_error
       end
     end

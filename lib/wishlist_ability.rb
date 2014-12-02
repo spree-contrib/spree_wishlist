@@ -15,7 +15,7 @@ class WishlistAbility
     end
 
     # Anyone can add wished product to wishlist
-    can :create, Spree::WishedProduct do |wished_product|
+    can :create, Spree::WishedProduct do
       !user.new_record?
     end
 

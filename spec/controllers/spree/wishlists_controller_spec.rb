@@ -92,10 +92,10 @@ RSpec.describe Spree::WishlistsController, type: :controller do
       expect(assigns(:wishlist)).to be_a Spree::Wishlist
     end
 
-     it 'sets the current user as the user of @wishlist' do
-       spree_post :create, wishlist: attributes
-       expect(assigns(:wishlist).user).to eq user
-     end
+    it 'sets the current user as the user of @wishlist' do
+      spree_post :create, wishlist: attributes
+      expect(assigns(:wishlist).user).to eq user
+    end
 
     context 'when the wishlist saves successfully' do
       it 'saves the new wishlist' do

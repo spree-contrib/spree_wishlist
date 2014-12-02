@@ -39,7 +39,7 @@ RSpec.feature 'Wished Product', :js do
   end
 
   context 'delete' do
-    given(:wishlist) { create(:wishlist, user: user)}
+    given(:wishlist) { create(:wishlist, user: user) }
 
     background do
       sign_in_as! user
