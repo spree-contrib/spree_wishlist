@@ -1,0 +1,31 @@
+---
+sv:
+  spree:
+    add_to_wishlist: "Lägg till i önskelistan"
+    are_you_sure_wishlist: "Är du säker på att du vill ta bort denna önskelista?"
+    availability: Tillgänglighet
+    create_new_wishlist: "Skapa nytt önskelista"
+    creating_wishlist: "Skapa önskelista"
+    date_added: "Datum tillagd"
+    delete_wishlist: "Ta bort önskelista"
+    edit_wishlist: "Redigera önskelista"
+    editing_wishlist: "Redigerar önskelistan"
+    in_stock: "I lager"
+    is_default: "Är standard"
+    is_private: "Är privat"
+    item_view: Visa
+    move: Flytta
+    move_to_another_wishlist: "Flytta till en annan önskelista"
+    my_wishlists: "Mina önskelistor"
+    private_wishlist: "Privat önskelista"
+    private: Privat
+    public_wishlist: "Offentlig önskelista"
+    public: Offentlig
+    remove_from_wishlist: "Ta bort från önskelistan"
+    wishlist_actions: Åtgärder
+    your_wishlist_is_empty: "Din önskelista är tom"
+    update_quantity: "Uppdatera antal"
+    item_added_to_wishlist: "Objekt har lagts till i önskelistan"
+    default_wishlist_name: "Önskelista"
+    take_a_look_at_my_wishlist: "Vänligen, ta en titt på min önskelista:"
+    click_link_to_view_wishlist: "Klicka på länken nedan för att läsa %{name} sidan."
