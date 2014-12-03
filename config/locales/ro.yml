@@ -1,3 +1,4 @@
+---
 ro:
   spree:
     add_to_wishlist: "Adaugă la wishlist"
@@ -25,3 +26,6 @@ ro:
     your_wishlist_is_empty: "Wishlist-ul tău este gol"
     update_quantity: "Actualizează cantitatea"
     item_added_to_wishlist: "Articol adăugat în wishlist"
+    default_wishlist_name: "Wishlist"
+    take_a_look_at_my_wishlist: "Vă rugăm, să ia o privire la lista mea:"
+    click_link_to_view_wishlist: "Faceți clic pe link-ul de mai jos pentru a vizualiza pagina %{name}."

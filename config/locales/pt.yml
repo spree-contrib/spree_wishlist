@@ -1,3 +1,4 @@
+---
 pt:
   spree:
     add_to_wishlist: Adicionar à lista de desejos
@@ -25,3 +26,6 @@ pt:
     your_wishlist_is_empty: "Esta lista de desejos está vazia"
     update_quantity: "Actualizar quantidade"
     item_added_to_wishlist: "Item adicionado à lista de desejos"
+    default_wishlist_name: "Lista de desejos"
+    take_a_look_at_my_wishlist: "Por favor, dê uma olhada na minha lista de desejos:"
+    click_link_to_view_wishlist: "Clique no link abaixo para visualizar a página %{name}."
