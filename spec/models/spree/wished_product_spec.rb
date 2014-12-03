@@ -1,12 +1,9 @@
-require File.dirname(__FILE__) + '/../../spec_helper'
+describe Spree::WishedProduct, type: :model do
 
-describe Spree::WishedProduct do
-  before(:each) do
-    @wished_product = Spree::WishedProduct.new
+  it { is_expected.to belong_to(:variant) }
+  it { is_expected.to belong_to(:wishlist) }
+
+  it 'has a valid factory' do
+    expect(build(:wished_product)).to be_valid
   end
-
-  it "should be valid" do
-    @wished_product.should be_valid
-  end
-
 end
