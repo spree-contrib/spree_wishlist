@@ -1,7 +1,13 @@
+# coding: utf-8
+lib = File.expand_path('../lib/', __FILE__)
+$LOAD_PATH.unshift lib unless $LOAD_PATH.include?(lib)
+
+require 'spree_wishlist/version'
+
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_wishlist'
-  s.version     = '2.2'
+  s.version     = SpreeWishlist.version
   s.summary     = 'Add wishlists to Spree'
   s.description = s.summary
   s.required_ruby_version = '>= 2.1.0'
