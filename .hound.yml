@@ -18,3 +18,7 @@ Blocks:
 
 ClassAndModuleChildren:
   Enabled: false
+
+# Avoid contradictory style rules by enforce single quotes.
+StringLiterals:
+  EnforcedStyle: single_quotes
