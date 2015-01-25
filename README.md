@@ -29,7 +29,7 @@ $ bundle exec rails g spree_wishlist:install
 
 ---
 
-Copyright (c) 2014 [Spree Commerce Inc.][4] and [contributors][5], released under the [New BSD License][3]
+Copyright (c) 2009-2015 [Spree Commerce Inc.][4] and [contributors][5], released under the [New BSD License][3]
 
 [1]: https://github.com/spree-contrib/spree_wishlist/blob/master/CONTRIBUTING.md
 [3]: https://github.com/spree-contrib/spree_wishlist/blob/master/LICENSE.md
