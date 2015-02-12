@@ -5,7 +5,7 @@ class CreateWishedProducts < ActiveRecord::Migration
       t.references :wishlist
       t.text :remark
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 

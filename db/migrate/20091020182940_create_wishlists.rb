@@ -7,7 +7,7 @@ class CreateWishlists < ActiveRecord::Migration
       t.boolean :is_private, default: true, null: false
       t.boolean :is_default, default: false, null: false
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 
