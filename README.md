@@ -1,6 +1,6 @@
 # Spree Wishlist
 
-[![Build Status](https://travis-ci.org/spree-contrib/spree_wishlist.svg?branch=master)](https://travis-ci.org/spree-contrib/spree_wishlist)
+[![Build Status](https://travis-ci.org/spree-contrib/spree_wishlist.svg?branch=3-0-stable)](https://travis-ci.org/spree-contrib/spree_wishlist)
 [![Code Climate](https://codeclimate.com/github/spree-contrib/spree_wishlist/badges/gpa.svg)](https://codeclimate.com/github/spree-contrib/spree_wishlist)
 
 The Spree Wishlist extension enables multiple wishlists per user, as well as managing those as public (sharable) and private. It also includes the ability to notify a friend via email of a recommended product.
@@ -11,8 +11,8 @@ The Spree Wishlist extension enables multiple wishlists per user, as well as man
 
 Add the following to your `Gemfile`
 ```ruby
-gem 'spree_wishlist', github: 'spree-contrib/spree_wishlist', branch: 'master'
-gem 'spree_email_to_friend', github: 'spree-contrib/spree_email_to_friend', branch: 'master'
+gem 'spree_wishlist', github: 'spree-contrib/spree_wishlist', branch: '3-0-stable'
+gem 'spree_email_to_friend', github: 'spree-contrib/spree_email_to_friend', branch: '3-0-stable'
 ```
 
 Run
