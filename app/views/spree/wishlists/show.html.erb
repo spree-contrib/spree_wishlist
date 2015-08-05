@@ -7,7 +7,7 @@
     <div><%= render partial: 'accessibility' %></div>
   <% end -%>
 </div>
-<table id="wishlist">
+<table id="wishlist" class="table table-bordered table-hover">
   <thead>
     <tr>
       <% if @wishlist.user == spree_current_user %>
@@ -18,6 +18,7 @@
       <th><%= Spree.t(:availability) %></th>
       <th><%= Spree.t(:date_added) %></th>
       <th><%= Spree.t(:price) %></th>
+      <th><%= Spree.t(:quantity) %></th>
     </tr>
   </thead>
   <tbody id="line_items">
@@ -64,6 +65,12 @@
       </td>
       <td>
         <%= display_price(variant) %>
+      </td>
+      <td>
+        <%= form_for wish do |f| %>
+          <%= f.number_field :quantity %>
+          <%= f.submit Spree.t('actions.save') %>
+        <% end %>
       </td>
     </tr>
     <% end -%>
