@@ -19,6 +19,7 @@
       <th><%= Spree.t(:date_added) %></th>
       <th><%= Spree.t(:price) %></th>
       <th><%= Spree.t(:quantity) %></th>
+      <th><%= Spree.t(:total) %></th>
     </tr>
   </thead>
   <tbody id="line_items">
@@ -72,6 +73,9 @@
           <%= f.number_field :quantity %>
           <%= f.submit Spree.t('actions.save'), class: 'btn btn-info '  %>
         <% end %>
+      </td>
+      <td>
+        <%= wish.display_total %>
       </td>
     </tr>
     <% end -%>
