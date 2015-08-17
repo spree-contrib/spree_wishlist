@@ -29,3 +29,5 @@ en:
     default_wishlist_name: "Wishlist"
     take_a_look_at_my_wishlist: "Please, take a look at my wishlist:"
     click_link_to_view_wishlist: "Click the link below to view the %{name} page."
+    quantity: "Quantity"
+    total: "Total"

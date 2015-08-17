@@ -36,6 +36,17 @@ RSpec.feature 'Wished Product', :js do
       expect(page).to have_content user.wishlists.first.name
       expect(page).to have_content product.name
     end
+
+    scenario 'when user chooses different quantity of item' do
+      wishlist = create(:wishlist, user: user)
+
+      visit spree.product_path(product)
+      fill_in "quantity", with: "15"
+      click_button 'Add to wishlist'
+
+      expect(page).to have_content product.name
+      expect(page).to have_selector("input[value='15']")
+    end
   end
 
   context 'delete' do
