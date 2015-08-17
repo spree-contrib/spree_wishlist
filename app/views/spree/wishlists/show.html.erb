@@ -7,7 +7,7 @@
     <div><%= render partial: 'accessibility' %></div>
   <% end -%>
 </div>
-<table id="wishlist">
+<table id="wishlist" class="table table-bordered table-hover">
   <thead>
     <tr>
       <% if @wishlist.user == spree_current_user %>
@@ -18,6 +18,8 @@
       <th><%= Spree.t(:availability) %></th>
       <th><%= Spree.t(:date_added) %></th>
       <th><%= Spree.t(:price) %></th>
+      <th><%= Spree.t(:quantity) %></th>
+      <th><%= Spree.t(:total) %></th>
     </tr>
   </thead>
   <tbody id="line_items">
@@ -28,17 +30,18 @@
     <tr class="<%= cycle('', 'alt') %>">
     <% if @wishlist.user == spree_current_user %>
       <td>
-        <p><%= link_to Spree.t(:remove_from_wishlist), wish, method: :delete, class: 'button' %></p>
+        <p><%= link_to Spree.t(:remove_from_wishlist), wish, method: :delete, class: 'btn btn-danger' %></p>
         <%= form_for :order, url: populate_orders_url do |f| %>
           <%= hidden_field_tag 'variant_id', variant.id, size: 3 %>
-          <%= hidden_field_tag 'quantity', 1, size: 3 %>
-          <%= link_to Spree.t(:add_to_cart), '#', onclick: '$(this).parent().submit(); return false;', class: 'button' %>
+          <%= Spree.t(:quantity) %>
+          <%= number_field_tag 'quantity', wish.quantity, size: 3 %>
+          <%= link_to Spree.t(:add_to_cart), '#', onclick: '$(this).parent().submit(); return false;', class: 'btn btn-success' %>
         <% end %>
         <% if spree_current_user.wishlists.count > 1 %>
           <%= Spree.t(:move_to_another_wishlist) %>:
           <%= form_for wish do |f| %>
             <%= f.select :wishlist_id, spree_current_user.wishlists.map{|wl| [wl.name, wl.id]} %>
-            <%= f.submit Spree.t(:move) %>
+            <%= f.submit Spree.t(:move), class: 'btn btn-default' %>
           <% end %>
         <% end %>
         <br />
@@ -65,6 +68,15 @@
       <td>
         <%= display_price(variant) %>
       </td>
+      <td>
+        <%= form_for wish do |f| %>
+          <%= f.number_field :quantity %>
+          <%= f.submit Spree.t('actions.save'), class: 'btn btn-info '  %>
+        <% end %>
+      </td>
+      <td>
+        <%= wish.display_total %>
+      </td>
     </tr>
     <% end -%>
   <% else -%>
@@ -76,10 +88,10 @@
 </table>
 <div class="footer_links" data-hook="wishlist_footer_links">
 <% if @wishlist.user == spree_current_user %>
-  <%= link_to Spree.t(:create_new_wishlist), new_wishlist_path, class: 'button' %>
+  <%= link_to Spree.t(:create_new_wishlist), new_wishlist_path, class: 'btn btn-default' %>
 <% end -%>
-<%= link_to Spree.t(:continue_shopping), products_path, class: 'button' %>
+<%= link_to Spree.t(:continue_shopping), products_path, class: 'btn btn-default' %>
 <% if respond_to?(:email_to_friend_url) %>
-  <%= link_to Spree.t('email_to_friend.send_to_friend'), email_to_friend_url('wishlist', @wishlist), class: 'button' %>
+  <%= link_to Spree.t('email_to_friend.send_to_friend'), email_to_friend_url('wishlist', @wishlist), class: 'btn btn-default' %>
 <% end %>
 </div>
