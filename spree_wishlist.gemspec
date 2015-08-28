@@ -34,7 +34,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'simplecov', '~> 0.9.0'
   s.add_development_dependency 'shoulda-matchers', '~> 2.5'
   s.add_development_dependency 'coffee-rails', '~> 4.0.0'
-  s.add_development_dependency 'sass-rails', '~> 4.0.0'
+  s.add_development_dependency 'sass-rails', '~> 5.0.0'
   s.add_development_dependency 'guard-rspec'
   s.add_development_dependency 'pry-rails'
   s.add_development_dependency 'rubocop'
