@@ -15,7 +15,7 @@ class WishlistAbility
     end
 
     # Anyone can add wished product to wishlist
-    can :create, Spree::WishedProduct do
+    can :create, Spree::WishedVariant do
       !user.new_record?
     end
 
@@ -30,12 +30,12 @@ class WishlistAbility
     end
 
     # You can only view own wishlist product unless wishlist public
-    can :read, Spree::WishedProduct do |wished_product|
+    can :read, Spree::WishedVariant do |wished_product|
       wished_product.wishlist.user == user || wished_product.wishlist.is_public?
     end
 
     # You can only browse or change own wishlist product
-    can [:index, :update, :destroy], Spree::WishedProduct do |wished_product|
+    can [:index, :update, :destroy], Spree::WishedVariant do |wished_product|
       wished_product.wishlist.user == user
     end
   end
