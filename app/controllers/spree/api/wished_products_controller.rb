@@ -3,6 +3,8 @@ module Spree
 
     class WishedProductsController < Spree::Api::BaseController
 
+      helper Spree::Wishlists::ApiHelpers
+
       def create
         authorize! :create, Spree::WishedProduct
         @wished_product = Spree::WishedProduct.new(wished_product_attributes)
@@ -26,6 +28,7 @@ module Spree
         @wished_product = Spree::WishedProduct.find(params[:id])
         authorize! :update, @wished_product
         @wished_product.update_attributes(wished_product_attributes)
+        @wishlist = @wished_product.wishlist
 
         if @wished_product.errors.empty?
           respond_with(@wished_product, :status => 200, :default_template => :show)
