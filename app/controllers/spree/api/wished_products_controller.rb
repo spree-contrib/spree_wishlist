@@ -17,8 +17,9 @@ module Spree
           @wished_product.save
         end
 
+        @wishlist.reload
         if @wished_product.persisted?
-          respond_with(@wished_product, :status => 201, :default_template => :show)
+          respond_with(@wishlist, :status => 201, :default_template => :show)
         else
           invalid_resource!(@wished_product)
         end

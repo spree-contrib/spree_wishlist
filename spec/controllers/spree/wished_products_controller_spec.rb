@@ -9,18 +9,30 @@ RSpec.describe Spree::WishedProductsController, type: :controller do
     context 'with valid params' do
       it 'creates a new Spree::WishedProduct' do
         expect {
-          spree_post :create, wished_product: attributes
+          spree_post :create, wished_product: {
+            variant_id: wished_product.variant_id,
+            wishlist_id: wished_product.wishlist_id,
+            remark: wished_product.remark
+          }
         }.to change(Spree::WishedProduct, :count).by(1)
       end
 
       it 'assigns a newly created wished_product as @wished_product' do
-        spree_post :create, wished_product: attributes
+        spree_post :create, wished_product: {
+          variant_id: wished_product.variant_id,
+          wishlist_id: wished_product.wishlist_id,
+          remark: wished_product.remark
+        }
         expect(assigns(:wished_product)).to be_a Spree::WishedProduct
         expect(assigns(:wished_product)).to be_persisted
       end
 
       it 'redirects to the created wished_product' do
-        spree_post :create, wished_product: attributes
+        spree_post :create, wished_product: {
+          variant_id: wished_product.variant_id,
+          wishlist_id: wished_product.wishlist_id,
+          remark: wished_product.remark
+        }
         expect(response).to redirect_to spree.wishlist_path(Spree::WishedProduct.last.wishlist)
       end
 
