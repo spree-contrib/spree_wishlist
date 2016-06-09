@@ -14,7 +14,7 @@ module Spree
       ]
 
       @@wished_product_attributes = [
-        :variant_id, :wishlist_id, :remark
+        :id, :variant_id, :wishlist_id, :remark
       ]
 
     end
