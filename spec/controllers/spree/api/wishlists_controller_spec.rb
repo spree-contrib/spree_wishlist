@@ -65,6 +65,24 @@ RSpec.describe Spree::Api::WishlistsController, type: :request do
 
   end
 
+  context '#show' do
+    let!(:wished_product) {
+      wishlist.wished_products.create({ variant_id: create(:variant).id })
+    }
+
+    it 'returns wish list details' do
+      get "/api/wishlists/#{wishlist.access_hash}?token=#{user.spree_api_key}"
+      expect(response).to be_success
+      expect(json['access_hash']).to eq (wishlist.access_hash)
+      expect(json['name']).to                        eq (wishlist.name)
+      expect(json['user_id']).to                     eq (wishlist.user_id)
+      expect(json['is_private']).to                  eq (wishlist.is_private?)
+      expect(json['is_default']).to                  eq (wishlist.is_default?)
+      expect(json['wished_products'].length).to      eq (wishlist.wished_products.count)
+      expect(json['wished_products'].first['id']).to eq (wished_product.id)
+    end
+  end
+
   context '#create' do
     it 'can create a new wishlist' do
       post "/api/wishlists?token=#{user.spree_api_key}", {
