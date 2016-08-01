@@ -21,6 +21,50 @@ RSpec.describe Spree::Api::WishedProductsController, type: :request do
       expect(json['wished_products'][0]['variant_id']).to eq(product.id)
     end
 
+    it 'will add product to a different users list if api user is an admin' do
+      admin_user = create(:admin_user)
+      admin_user.generate_spree_api_key!
+      post "/api/wished_products?token=#{admin_user.spree_api_key}", {
+        wished_product: {
+          variant_id: product.id,
+          wishlist_id: user.wishlist.id
+        },
+        user_id: user.id
+      }
+      expect(response).to be_success
+
+      # expect that the product will be added to api_users list, not the
+      # the user whos id was passed.
+      expect(Spree::WishedProduct.last.wishlist.user_id).to eq(user.id)
+    end
+
+    it 'will add not product to a different users list if api user is not an admin' do
+      not_admin_user = create(:user)
+      not_admin_user.generate_spree_api_key!
+      post "/api/wished_products?token=#{not_admin_user.spree_api_key}", {
+        wished_product: {
+          variant_id: product.id,
+          wishlist_id: user.wishlist.id
+        },
+        user_id: user.id
+      }
+      expect(response).to_not be_success
+    end
+
+    it 'will add the item to list identified by `wishlist_id` if passed' do
+      other_wishlist = create(:wishlist, user: user)
+
+      post "/api/wished_products?token=#{user.spree_api_key}", {
+        wished_product: {
+          variant_id: product.id,
+          wishlist_id: other_wishlist.id
+        }
+      }
+      expect(response).to be_success
+      expect(Spree::WishedProduct.count).to eq(1)
+      expect(Spree::WishedProduct.last.wishlist_id).to eq(other_wishlist.id)
+    end
+
     it 'can not add product if missing variant' do
       post "/api/wished_products?token=#{user.spree_api_key}", {
         wished_product: {
