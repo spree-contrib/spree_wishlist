@@ -1,12 +1,12 @@
 class Spree::Wishlist < ActiveRecord::Base
   belongs_to :user, class_name: Spree.user_class
-  has_many :wished_products, dependent: :destroy
+  has_many :wished_variants, dependent: :destroy
   before_create :set_access_hash
 
   validates :name, presence: true
 
   def include?(variant_id)
-    wished_products.map(&:variant_id).include? variant_id.to_i
+    wished_variants.map(&:variant_id).include? variant_id.to_i
   end
 
   def to_param

@@ -3,7 +3,7 @@ RSpec.describe Spree::Wishlist, type: :model do
   let(:wishlist) { create(:wishlist, user: user, name: 'My Wishlist') }
 
   it { is_expected.to belong_to(:user) }
-  it { is_expected.to have_many(:wished_products) }
+  it { is_expected.to have_many(:wished_variants) }
   it { is_expected.to validate_presence_of(:name) }
 
   it 'has a valid factory' do
@@ -14,8 +14,8 @@ RSpec.describe Spree::Wishlist, type: :model do
     let(:variant) { create(:variant) }
 
     before do
-      wished_product = create(:wished_product, variant: variant)
-      wishlist.wished_products << wished_product
+      wished_variant = create(:wished_variant, variant: variant)
+      wishlist.wished_variants << wished_variant
       wishlist.save
     end
 
@@ -79,12 +79,12 @@ RSpec.describe Spree::Wishlist, type: :model do
   end
 
   context '#destroy' do
-    let!(:wished_product) { create(:wished_product) }
+    let!(:wished_variant) { create(:wished_variant) }
 
     it 'deletes associated wished products' do
       expect {
-        wished_product.wishlist.destroy
-      }.to change(Spree::WishedProduct, :count).by(-1)
+        wished_variant.wishlist.destroy
+      }.to change(Spree::WishedVariant, :count).by(-1)
     end
   end
 end

@@ -39,7 +39,7 @@ RSpec.describe WishlistAbility do
   context 'for Wished Product' do
     let(:resource) do
       create(
-        :wished_product,
+        :wished_variant,
         wishlist: create(:wishlist, user: user),
         variant:  create(:variant)
       )
