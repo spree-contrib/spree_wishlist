@@ -63,6 +63,21 @@ RSpec.describe Spree::Api::WishlistsController, type: :request do
       expect(json['wishlists'].length).to eq (10)
     end
 
+    it 'returns wish lists for another user if api user is admin' do
+      admin_user = create(:admin_user)
+      admin_user.generate_spree_api_key!
+      get "/api/wishlists?user_id=#{santa_claus.id}&token=#{admin_user.spree_api_key}&page=2&per_page=10"
+      expect(response).to be_success
+      expect(json['total_count']).to eq (30)
+    end
+
+    it 'does not return returns wish lists for another user if api user is not admin' do
+      not_admin_user = create(:user)
+      not_admin_user.generate_spree_api_key!
+      get "/api/wishlists?user_id=#{santa_claus.id}&token=#{not_admin_user.spree_api_key}&page=2&per_page=10"
+      expect(response).to be_success
+      expect(json['total_count']).to eq (0)
+    end
   end
 
   context '#show' do
@@ -73,7 +88,8 @@ RSpec.describe Spree::Api::WishlistsController, type: :request do
     it 'returns wish list details' do
       get "/api/wishlists/#{wishlist.access_hash}?token=#{user.spree_api_key}"
       expect(response).to be_success
-      expect(json['access_hash']).to eq (wishlist.access_hash)
+      expect(json['access_hash']).to                 eq (wishlist.access_hash)
+      expect(json['id']).to                          eq (wishlist.id)
       expect(json['name']).to                        eq (wishlist.name)
       expect(json['user_id']).to                     eq (wishlist.user_id)
       expect(json['is_private']).to                  eq (wishlist.is_private?)
@@ -104,6 +120,36 @@ RSpec.describe Spree::Api::WishlistsController, type: :request do
       expect(response.status).to eq(422)
       expect(json['error']).not_to be_empty
       expect(json['errors']['name']).not_to be_empty
+    end
+
+    it 'allows wish list to be created for another user if api user is admin' do
+      admin_user = create(:admin_user)
+      admin_user.generate_spree_api_key!
+
+      post "/api/wishlists?user_id=#{user.id}&token=#{admin_user.spree_api_key}", {
+        wishlist: {
+          name: 'fathers day'
+        }
+      }
+      expect(response).to be_success
+      expect(user.wishlists.count).to eq(2)
+      expect(user.wishlists.last.name).to eq('fathers day')
+      expect(admin_user.wishlists.count).to eq(0)
+    end
+
+    it 'does not allow wish list to be created for another user if api user is not admin' do
+      not_admin_user = create(:user)
+      not_admin_user.generate_spree_api_key!
+
+      post "/api/wishlists?user_id=#{user.id}&token=#{not_admin_user.spree_api_key}", {
+        wishlist: {
+          name: 'fathers day'
+        }
+      }
+      expect(response).to be_success
+      expect(user.wishlists.count).to eq(1)
+      expect(not_admin_user.wishlists.count).to eq(1)
+      expect(not_admin_user.wishlists.last.name).to eq('fathers day')
     end
   end
 

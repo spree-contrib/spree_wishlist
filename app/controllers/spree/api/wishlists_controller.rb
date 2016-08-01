@@ -8,7 +8,7 @@ module Spree
       helper Spree::Wishlists::ApiHelpers
 
       def index
-        @wishlists = current_api_user.wishlists.page(params[:page]).per(params[:per_page])
+        @wishlists = current_wishlist_user.wishlists.page(params[:page]).per(params[:per_page])
         respond_with(@wishlists)
       end
 
@@ -18,7 +18,7 @@ module Spree
       def create
         authorize! :create, Spree::Wishlist
         @wishlist = Spree::Wishlist.new( wishlist_attributes )
-        @wishlist.user = current_api_user
+        @wishlist.user = current_wishlist_user
         @wishlist.save
 
         if @wishlist.persisted?
@@ -59,7 +59,19 @@ module Spree
       def find_wishlist
         @wishlist = Spree::Wishlist.find_by_access_hash!(params[:id])
       end
-
+      
+      # to allow managing of other users' list by admins
+      def current_wishlist_user
+        @current_wishlist_user ||= begin
+          if params[:user_id] && @current_user_roles.include?('admin')
+            Spree.user_class.find(params[:user_id])
+          else
+            # if the API user is not an admin, or didn't ask for another user,
+            # return themselves.
+            current_api_user
+          end
+        end
+      end
     end # eoc
 
   end

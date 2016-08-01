@@ -8,7 +8,16 @@ module Spree
       def create
         authorize! :create, Spree::WishedProduct
         @wished_product = Spree::WishedProduct.new(wished_product_attributes)
-        @wishlist = current_api_user.wishlist
+
+        current_wishlist_user = if params[:user_id] && @current_user_roles.include?('admin')
+          Spree.user_class.find(params[:user_id])
+        else
+          # if the API user is not an admin, or didn't ask for another user,
+          # return themselves.
+          current_api_user
+        end
+
+        @wishlist = current_wishlist_user.wishlists.find(@wished_product[:wishlist_id]) || current_wishlist_user.wishlist
 
         if @wishlist.include? params[:wished_product][:variant_id]
           @wished_product = @wishlist.wished_products.detect {|wp| wp.variant_id == params[:wished_product][:variant_id].to_i }
