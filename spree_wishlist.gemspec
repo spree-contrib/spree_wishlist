@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.version     = SpreeWishlist.version
   s.summary     = 'Add wishlists to Spree'
   s.description = s.summary
-  s.required_ruby_version = '>= 2.1.0'
+  s.required_ruby_version = '>= 2.2.5'
 
   s.author      = 'John Dyer'
   s.email       = 'jdyer@spreecommerce.com'
@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.require_path  = 'lib'
   s.requirements << 'none'
 
-  s.add_runtime_dependency 'spree_core', '~> 3.1.0.beta'
+  s.add_runtime_dependency 'spree_core', '~> 3.1.0'
 
   s.add_development_dependency 'factory_girl', '~> 4.4'
   s.add_development_dependency 'ffaker'
@@ -34,7 +34,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'simplecov', '~> 0.9.0'
   s.add_development_dependency 'shoulda-matchers', '~> 2.5'
   s.add_development_dependency 'coffee-rails', '~> 4.0.0'
-  s.add_development_dependency 'sass-rails', '~> 5.0.0'
+  s.add_development_dependency 'sass-rails', '~> 5.0.6'
   s.add_development_dependency 'guard-rspec'
   s.add_development_dependency 'pry-rails'
   s.add_development_dependency 'rubocop'
