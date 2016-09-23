@@ -9,5 +9,4 @@ class Spree::WishedProduct < ActiveRecord::Base
   def display_total
     Spree::Money.new(total)
   end
-
 end

@@ -38,10 +38,10 @@ RSpec.feature 'Wished Product', :js do
     end
 
     scenario 'when user chooses different quantity of item' do
-      wishlist = create(:wishlist, user: user)
+      create(:wishlist, user: user)
 
       visit spree.product_path(product)
-      fill_in "quantity", with: "15"
+      fill_in 'quantity', with: '15'
       click_button 'Add to wishlist'
 
       expect(page).to have_content product.name

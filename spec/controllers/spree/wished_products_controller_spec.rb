@@ -1,7 +1,7 @@
 RSpec.describe Spree::WishedProductsController, type: :controller do
-  let(:user)           { create(:user) }
+  let(:user) { create(:user) }
   let!(:wished_product) { create(:wished_product) }
-  let(:attributes)     { attributes_for(:wished_product) }
+  let(:attributes) { attributes_for(:wished_product) }
 
   before { allow(controller).to receive(:spree_current_user).and_return(user) }
 
@@ -25,7 +25,7 @@ RSpec.describe Spree::WishedProductsController, type: :controller do
       end
 
       it 'does not save if wished product already exist in wishlist' do
-        variant  = create(:variant)
+        variant = create(:variant)
         wishlist = create(:wishlist, user: user)
         wished_product = create(:wished_product, wishlist: wishlist, variant: variant)
         expect {
