@@ -11,8 +11,8 @@ The Spree Wishlist extension enables multiple wishlists per user, as well as man
 
 Add the following to your `Gemfile`
 ```ruby
-gem 'spree_wishlist', github: 'spree-contrib/spree_wishlist', branch: 'master'
-gem 'spree_email_to_friend', github: 'spree-contrib/spree_email_to_friend', branch: 'master'
+gem 'spree_wishlist', github: 'spree-contrib/spree_wishlist', branch: '3-1-stable'
+gem 'spree_email_to_friend', github: 'spree-contrib/spree_email_to_friend', branch: '3-1-stable'
 ```
 
 Run
