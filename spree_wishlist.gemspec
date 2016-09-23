@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.summary     = 'Add wishlists to Spree'
   s.description = s.summary
 
-  s.required_ruby_version = '>= 2.2.2'
+  s.required_ruby_version = '>= 2.2.5'
 
   s.author      = 'John Dyer'
   s.email       = 'jdyer@spreecommerce.com'
