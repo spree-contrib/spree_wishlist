@@ -2,10 +2,6 @@ RSpec.describe Spree::Wishlist, type: :model do
   let(:user) { create(:user) }
   let(:wishlist) { create(:wishlist, user: user, name: 'My Wishlist') }
 
-  it { is_expected.to belong_to(:user) }
-  it { is_expected.to have_many(:wished_products) }
-  it { is_expected.to validate_presence_of(:name) }
-
   it 'has a valid factory' do
     expect(wishlist).to be_valid
   end
