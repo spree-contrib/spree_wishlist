@@ -61,10 +61,7 @@ RSpec.feature 'Wished Product', :js do
 
       visit spree.wishlist_path(wishlist)
 
-      wp_path = spree.wished_product_path(wished_product)
-      delete_links = find(:xpath, '//table[@id="wishlist"]/tbody').all(:xpath, './/tr/td/p/a')
-      delete_link = delete_links.select { |link| link[:href] == wp_path }.first
-      delete_link.click
+      click_link 'Remove from wishlist'
 
       expect(page).not_to have_content wished_product.variant.product.name
     end
@@ -81,7 +78,7 @@ RSpec.feature 'Wished Product', :js do
 
       wp_path = spree.wished_product_path(wished_product)
       delete_links = find(:xpath, '//table[@id="wishlist"]/tbody').all(:xpath, './/tr/td/p/a')
-      delete_link = delete_links.select { |link| link[:href] == wp_path }.first
+      delete_link = delete_links.select { |link| link[:href][-wp_path.length..-1] == wp_path }.first
       delete_link.click
       pattern = Regexp.new(wished_products.map { |wp| wp.variant.product.name }.join('.*'))
 
