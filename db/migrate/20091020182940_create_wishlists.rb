@@ -1,4 +1,4 @@
-class CreateWishlists < ActiveRecord::Migration
+class CreateWishlists < SpreeExtension::Migration[4.2]
   def self.up
     create_table :wishlists do |t|
       t.references :user

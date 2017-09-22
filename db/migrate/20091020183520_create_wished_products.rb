@@ -1,4 +1,4 @@
-class CreateWishedProducts < ActiveRecord::Migration
+class CreateWishedProducts < SpreeExtension::Migration[4.2]
   def self.up
     create_table :wished_products do |t|
       t.references :variant
