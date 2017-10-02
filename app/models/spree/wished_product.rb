@@ -1,6 +1,6 @@
 class Spree::WishedProduct < ActiveRecord::Base
-  belongs_to :variant
-  belongs_to :wishlist
+  belongs_to :variant, optional: true
+  belongs_to :wishlist, optional: true
 
   def total
     quantity * variant.price
