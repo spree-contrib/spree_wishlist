@@ -6,6 +6,12 @@ RSpec.describe Spree::Wishlist, type: :model do
     expect(wishlist).to be_valid
   end
 
+  it 'is valid without a user' do
+    userless_wishlist = build(:wishlist, user: nil)
+
+    expect(userless_wishlist).to be_valid
+  end
+
   context '.include?' do
     let(:variant) { create(:variant) }
 
