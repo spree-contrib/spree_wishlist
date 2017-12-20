@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :wishlist, class: Spree::Wishlist do
     user
     sequence(:name) { |n| "Wishlist_#{n}" }

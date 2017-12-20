@@ -1,7 +1,8 @@
 RSpec.describe Spree::WishedProductsController, type: :controller do
   let(:user)           { create(:user) }
   let!(:wished_product) { create(:wished_product) }
-  let(:attributes)     { attributes_for(:wished_product) }
+  let!(:variant) { create(:variant) }
+  let(:attributes)     { attributes_for(:wished_product).merge(variant_id: variant.id) }
 
   before { allow(controller).to receive(:spree_current_user).and_return(user) }
 
