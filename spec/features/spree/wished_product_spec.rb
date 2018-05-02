@@ -67,6 +67,7 @@ RSpec.feature 'Wished Product', :js do
     end
 
     scenario 'randomly from a wishlist with multiple wished products while maintaining ordering by date added' do
+      allow(Capybara).to receive(:ignore_hidden_elements) { false }
       wished_products = [
         create(:wished_product, wishlist: wishlist),
         create(:wished_product, wishlist: wishlist),
