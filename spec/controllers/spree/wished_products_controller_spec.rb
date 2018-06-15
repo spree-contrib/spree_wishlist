@@ -37,7 +37,7 @@ RSpec.describe Spree::WishedProductsController, type: :controller do
 
     context 'with invalid params' do
       it 'raises error' do
-        expect { spree_post :create }.to raise_error
+        expect { spree_post :create }.to raise_error(ActionController::ParameterMissing)
       end
     end
   end
@@ -57,7 +57,7 @@ RSpec.describe Spree::WishedProductsController, type: :controller do
 
     context 'with invalid params' do
       it 'raises error' do
-        expect { spree_put :update }.to raise_error
+        expect { spree_put :update }.to raise_error(ActionController::UrlGenerationError)
       end
     end
   end
@@ -75,7 +75,7 @@ RSpec.describe Spree::WishedProductsController, type: :controller do
     end
 
     it 'requires the :id parameter' do
-      expect { spree_delete :destroy }.to raise_error
+      expect { spree_delete :destroy }.to raise_error(ActionController::UrlGenerationError)
     end
   end
 end

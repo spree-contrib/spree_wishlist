@@ -50,7 +50,7 @@ RSpec.describe Spree::WishlistsController, type: :controller do
       it 'raise error' do
         expect {
           spree_put :update, id: wishlist, wishlist: {}
-        }.to raise_error
+        }.to raise_error(ActionController::ParameterMissing)
       end
     end
   end
@@ -121,7 +121,7 @@ RSpec.describe Spree::WishlistsController, type: :controller do
       it 'raise error' do
         expect {
           spree_post :create, wishlist: {}
-        }.to raise_error
+        }.to raise_error(ActionController::ParameterMissing)
       end
     end
   end
