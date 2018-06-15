@@ -1,5 +1,5 @@
 Spree.user_class.class_eval do
-  has_many :wishlists, class_name: Spree::Wishlist
+  has_many :wishlists, class_name: 'Spree::Wishlist'
 
   def wishlist
     default_wishlist = wishlists.where(is_default: true).first
