@@ -24,8 +24,11 @@ gemfile:
   - gemfiles/spree_master.gemfile
 
 matrix:
-    allow_failures:
-          - gemfile: gemfiles/spree_master.gemfile
+  exclude:
+    - rvm: 2.2.7
+      gemfile: gemfiles/spree_master.gemfile
+  allow_failures:
+    - gemfile: gemfiles/spree_master.gemfile
 
 before_install:
   - mysql -u root -e "GRANT ALL ON *.* TO 'travis'@'%';"
