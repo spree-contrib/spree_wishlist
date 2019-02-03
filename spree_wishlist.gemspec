@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'spree_core', '>= 3.1.0', '< 4.0'
   s.add_runtime_dependency 'spree_extension'
 
-  s.add_development_dependency 'factory_bot'
+  s.add_development_dependency 'factory_bot', '~> 4.7'
   s.add_development_dependency 'ffaker'
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'sqlite3'
