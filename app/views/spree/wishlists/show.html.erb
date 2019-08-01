@@ -51,7 +51,7 @@
         <% if variant.images.length == 0 %>
           <%= small_image(variant.product) %>
         <% else %>
-          <%= image_tag variant.images.first.attachment.url(:small) %>
+          <%= image_tag main_app.url_for(variant.images.first.url(:small)) %>                  
         <% end %>
       </td>
       <td>
