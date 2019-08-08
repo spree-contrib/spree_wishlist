@@ -2,19 +2,8 @@
 
 <% content_for :page_title do %>
   <%= link_to @user.email, spree.edit_admin_user_url(@user) %> /
-  <%= Spree.t(:"admin.user.wishlists") %>
+  <%= Spree.t(:wishlists, scope: [:admin, :user]) %>
 <% end %>
-
-
-<ul>
-<% @user.wishlists.each do |wl| %>
-  <% if !wl.is_private? || @user == spree_current_user %>
-  <li><%= link_to wl.name, wl %></li>
-  <% end -%>
-<% end -%>
-</ul>
-
-
 
 <fieldset data-hook="admin_user_wishlists">
   <% if @wishlists.any? %>
@@ -26,18 +15,18 @@
           <th><%= Spree.t(:is_private) %></th>
           <th><%= Spree.t(:default) %></th>
         	<th><%= Spree.t(:updated_at, scope: :admin) %></th>
-          <th data-hook="admin_user_wishlists_header_actions" class="actions"></th>
+          <th data-hook="admin_user_wishlists_actions" class="actions"></th>
         </tr>
       </thead>
       <tbody>
       <% @wishlists.each do |wl| %>
-        <tr id="<%= spree_dom_id wl %>" data-hook="admin_user_wishlits_rows" class="<%= cycle('odd', 'even') %>">
-          <td class="sku"><%= wl.name rescue '' %></td>
+        <tr id="<%= spree_dom_id wl %>" data-hook="admin_user_wishlist_row" class="<%= cycle('odd', 'even') %>">
+          <td class="wishlist"><%= link_to wl.name, spree.admin_wishlist_url(wl) %></td>
           <td class="status"><%= Spree.t(wl.is_private, scope: :admin) %> </td>
           <td class="image"><%= Spree.t(wl.is_default, scope: :admin) %></td>
           <td class="image"><%= wl.updated_at %></td>
           <td class="actions actions-2 text-right" data-hook="admin_user_wishlist_row_actions">
-            <%= link_to_with_icon 'eye-open', '', spree.admin_wishlist_url(wl), class: "btn btn-primary btn-sm", no_text: true %>
+            <%= link_to_with_icon 'eye-open', '', spree.admin_wishlist_url(wl), class: "btn btn-default btn-sm" %>
             <%= link_to_delete wl, url: spree.admin_wishlist_url(wl), no_text: true if can?(:delete, wl) %>
           </td>
         </tr>
@@ -52,13 +41,5 @@
 
   <%= paginate @wishlists, theme: 'twitter-bootstrap-3' %>
 </fieldset>
-
-
-
-
-
-
-
-
 
 <%= render 'spree/admin/users/lifetime_stats' %>

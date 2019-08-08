@@ -1,5 +1,5 @@
 <li <%= "class=active" if current == :wishlists %>>
   <%= link_to_with_icon 'gift',
-    Spree.t(:"admin.user.wishlists"),
+    Spree.t(:wishlists, scope: [:admin, :user]),
     spree.wishlists_admin_user_path(@user) %>
 </li>

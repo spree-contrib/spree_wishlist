@@ -6,7 +6,11 @@ en:
       true: "Yes"
       updated_at: "Updated At"
       user:
+        wishlist: "Wishlist"
         wishlists: "Wishlists"
+    notice_messages:
+      wishlist_deleted: Wishlist has been deleted
+      wishlist_not_deleted: "Wishlist could not be deleted. Reason: %{error}"
     add_to_wishlist: "Add to wishlist"
     are_you_sure_wishlist: "Are you sure that you want to delete this wishlist?"
     availability: "Availability"

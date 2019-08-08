@@ -44,9 +44,8 @@
             <%= f.submit Spree.t(:move), class: 'btn btn-default' %>
           <% end %>
         <% end %>
-        <br />
       </td>
-    <% end -%>
+    <% end %>
       <td>
         <% if variant.images.length == 0 %>
           <%= small_image(variant.product) %>
@@ -81,7 +80,7 @@
     <% end %>
   <% else %>
     <tr>
-      <td colspan="6"><%= Spree.t(:your_wishlist_is_empty) %></td>
+      <td colspan="8"><%= Spree.t(:your_wishlist_is_empty) %></td>
     </tr>
   <% end %>
   </tbody>
