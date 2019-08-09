@@ -6,12 +6,8 @@ Spree::Core::Engine.add_routes do
 
   namespace :admin, path: Spree.admin_path do
     resources :users do
-      member do
-        get :wishlists
-      end
+      resources :wishlists, only: [:index, :show, :destroy]
     end
-
-    resources :wishlists, only: [:show, :destroy]
   end
 
 end

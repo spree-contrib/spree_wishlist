@@ -21,13 +21,13 @@
       <tbody>
       <% @wishlists.each do |wl| %>
         <tr id="<%= spree_dom_id wl %>" data-hook="admin_user_wishlist_row" class="<%= cycle('odd', 'even') %>">
-          <td class="wishlist"><%= link_to wl.name, spree.admin_wishlist_url(wl) %></td>
+          <td class="wishlist"><%= link_to wl.name, spree.admin_user_wishlist_path(@user, wl) %></td>
           <td class="status"><%= Spree.t(wl.is_private, scope: :admin) %> </td>
           <td class="image"><%= Spree.t(wl.is_default, scope: :admin) %></td>
           <td class="image"><%= wl.updated_at %></td>
           <td class="actions actions-2 text-right" data-hook="admin_user_wishlist_row_actions">
-            <%= link_to_with_icon 'eye-open', '', spree.admin_wishlist_url(wl), class: "btn btn-default btn-sm" %>
-            <%= link_to_delete wl, url: spree.admin_wishlist_url(wl), no_text: true if can?(:delete, wl) %>
+            <%= link_to_with_icon 'eye-open', '', spree.admin_user_wishlist_path(@user, wl), class: "btn btn-default btn-sm" %>
+            <%= link_to_delete wl, url: spree.admin_user_wishlist_path(@user,wl), no_text: true if can?(:delete, wl) %>
           </td>
         </tr>
       <% end %>
