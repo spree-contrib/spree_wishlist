@@ -19,16 +19,23 @@ module Spree
       def destroy
         if @wishlist.destroy
           flash[:success] = Spree.t(:wishlist_deleted, scope: :notice_messages)
+          respond_with(@wishlist) do |format|
+            format.html { redirect_to admin_user_whislists_path(@user) }
+            format.js { render_js_for_destroy }
+          end          
         else
           flash[:error] = Spree.t(:wishlist_not_deleted, scope: :notice_messages, error: @wishlist.errors.full_messages.to_sentence)
         end
-        redirect_to spree.admin_user_wishlists_url(@user)
       end
 
       private
 
       def load_user
-        @user = Spree::User.find_by_id(params[:user_id])
+        @user = Spree.user_class.find_by_id(params[:user_id])
+        unless @user
+          flash[:error] = Spree.t(:user_not_found)
+          redirect_to admin_path
+        end
       end
 
       def find_wishlist
