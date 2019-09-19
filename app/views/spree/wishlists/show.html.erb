@@ -48,9 +48,9 @@
     <% end %>
       <td>
         <% if variant.images.length == 0 %>
-          <%= small_image(variant.product) %>
+          <%= small_image(variant.product, itemprop: "image") %>
         <% else %>
-          <%= image_tag main_app.url_for(variant.images.first.url(:small)) %>                  
+          <%= small_image(variant, itemprop: "image") %>  
         <% end %>
       </td>
       <td>
