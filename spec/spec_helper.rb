@@ -14,6 +14,7 @@ require 'rspec/rails'
 require 'ffaker'
 require 'shoulda-matchers'
 require 'pry'
+require 'webdrivers'
 
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!

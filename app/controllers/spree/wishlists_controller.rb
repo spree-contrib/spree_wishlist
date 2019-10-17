@@ -21,7 +21,7 @@ class Spree::WishlistsController < Spree::StoreController
   end
 
   def update
-    @wishlist.update_attributes wishlist_attributes
+    @wishlist.update wishlist_attributes
     respond_with(@wishlist)
   end
 
