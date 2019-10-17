@@ -115,6 +115,7 @@ RSpec.feature 'Wishlist', :js do
       scenario 'delete a users wishlist' do
         visit_edit_wishlist
         click_link 'Delete wishlist'
+        page.driver.browser.switch_to.alert.accept
         expect(page).not_to have_content wishlist.name
       end
     end
