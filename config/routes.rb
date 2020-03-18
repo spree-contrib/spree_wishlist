@@ -4,7 +4,9 @@ Spree::Core::Engine.add_routes do
   get '/wishlist' => "wishlists#default", as: "default_wishlist"
 
   namespace :api, defaults: { format: 'json' } do
-    resources :wishlists
-    resources :wished_products, only: [:create, :update, :destroy]
+    namespace :v1 do
+      resources :wishlists
+      resources :wished_products, only: [:create, :update, :destroy]
+    end
   end
 end
