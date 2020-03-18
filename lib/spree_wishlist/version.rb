@@ -8,8 +8,8 @@ module SpreeWishlist
   end
 
   module VERSION
-    MAJOR = 2
-    MINOR = 2
+    MAJOR = 3
+    MINOR = 0
     TINY  = 0
     PRE   = nil
 
