@@ -6,7 +6,7 @@
       if (selected_variant_id) {
         $('#wished_product_variant_id').val(selected_variant_id);
       }
-      cart_quantity = $('.add-to-cart #quantity').val();
+      cart_quantity = $('#quantity').val();
       if (cart_quantity) {
         return $('#wished_product_quantity').val(cart_quantity);
       }
