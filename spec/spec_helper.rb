@@ -16,6 +16,8 @@ require 'shoulda-matchers'
 require 'pry'
 require 'webdrivers'
 
+Dir[File.join(File.dirname(__FILE__), 'support/**/*.rb')].each { |file| require file }
+
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.raise_errors_for_deprecations!
@@ -32,6 +34,7 @@ RSpec.configure do |config|
   config.before(:each) do
     create(:store)
   end
+
+  config.include Requests::JsonHelpers, type: :request
 end
 
-Dir[File.join(File.dirname(__FILE__), 'support/**/*.rb')].each { |file| require file }
