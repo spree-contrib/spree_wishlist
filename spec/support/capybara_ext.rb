@@ -5,7 +5,11 @@ module CapybaraExt
       fill_in 'Email', with: user.email
       fill_in 'Password', with: user.password
     end
-    click_button 'Login'
+    if Gem.loaded_specs['spree_core'].version >= Gem::Version.create('4.1.0')
+      click_button 'Log in'
+    else
+      click_button 'Login'
+    end
   end
 end
 
