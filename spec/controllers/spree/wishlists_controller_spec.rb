@@ -71,7 +71,7 @@ RSpec.describe Spree::WishlistsController, type: :controller do
 
   context '#default' do
     it 'retrieves the default wishlist of the current user' do
-      expect { allow_any_instance_of(Spree::User).to receive(:wishlist) }
+      expect { allow_any_instance_of(Spree.user_class).to receive(:wishlist) }
       get :default
     end
 

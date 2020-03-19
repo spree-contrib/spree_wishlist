@@ -2,7 +2,7 @@ class WishlistAbility
   include CanCan::Ability
 
   def initialize(user)
-    user ||= Spree::User.new # correct?
+    user ||= Spree.user_class.new # correct?
 
     # Anyone can create a wishlist
     can :create, Spree::Wishlist do
