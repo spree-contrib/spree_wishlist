@@ -38,7 +38,7 @@ Available endpoints:
 
   ```json
   wishlist: {
-    name: 'fathers day'
+    "name": "fathers day"
   }
   ```
 
@@ -48,7 +48,7 @@ Available endpoints:
   
   ```json
   wishlist: {
-    name: 'new name'
+    "name": "new name"
   }
   ```
 
@@ -62,8 +62,8 @@ Available endpoints:
 
   ```json
   wished_product: {
-    variant_id: 2,
-    wishlist_id: 1
+    "variant_id": 2,
+    "wishlist_id": 1
   }
   ```
 
@@ -73,8 +73,8 @@ Available endpoints:
 
   ```json
   wished_product: {
-    variant_id: 3,
-    wishlist_id: 2
+    "variant_id": 3,
+    "wishlist_id": 2
   }
   ```
 
