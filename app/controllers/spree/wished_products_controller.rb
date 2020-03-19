@@ -1,4 +1,5 @@
-class Spree::WishedProductsController < Spree::StoreController
+class Spree::WishedProductsController < Spree::BaseController
+  include Spree::Core::ControllerHelpers::Order
   respond_to :html
 
   def create

@@ -1,4 +1,5 @@
-class Spree::WishlistsController < Spree::StoreController
+class Spree::WishlistsController < Spree::BaseController
+  include Spree::Core::ControllerHelpers::Order
   helper 'spree/products'
 
   before_action :find_wishlist, only: [:destroy, :show, :update, :edit]
