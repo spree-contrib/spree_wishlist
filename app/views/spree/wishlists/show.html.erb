@@ -5,14 +5,14 @@
       <%= link_to Spree.t(:edit_wishlist), edit_wishlist_path(@wishlist), class: 'button' %>
     </div>
     <div><%= render partial: 'accessibility' %></div>
-  <% end -%>
+  <% end %>
 </div>
 <table id="wishlist" class="table table-bordered table-hover">
   <thead>
     <tr>
       <% if @wishlist.user == spree_current_user %>
         <th><%= Spree.t(:wishlist_actions) %></th>
-      <% end -%>
+      <% end %>
       <th><%= Spree.t(:item_view) %></th>
       <th><%= Spree.t(:item_description) %></th>
       <th><%= Spree.t(:availability) %></th>
@@ -56,7 +56,7 @@
       </td>
       <td>
         <h4><%= link_to product.name, product %></h4>
-        <p><%= variant_options variant %></p>
+        <p><%= variant.options_text %></p>
         <%= truncate(strip_tags(product.description), length: 100, omission: '...') %>
       </td>
       <td>
@@ -78,18 +78,18 @@
         <%= wish.display_total %>
       </td>
     </tr>
-    <% end -%>
-  <% else -%>
+    <% end %>
+  <% else %>
     <tr>
       <td colspan="6"><%= Spree.t(:your_wishlist_is_empty) %></td>
     </tr>
-  <% end -%>
+  <% end %>
   </tbody>
 </table>
 <div class="footer_links" data-hook="wishlist_footer_links">
 <% if @wishlist.user == spree_current_user %>
   <%= link_to Spree.t(:create_new_wishlist), new_wishlist_path, class: 'btn btn-default' %>
-<% end -%>
+<% end %>
 <%= link_to Spree.t(:continue_shopping), products_path, class: 'btn btn-default' %>
 <% if respond_to?(:email_to_friend_url) %>
   <%= link_to Spree.t('email_to_friend.send_to_friend'), email_to_friend_url('wishlist', @wishlist), class: 'btn btn-default' %>

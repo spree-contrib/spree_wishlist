@@ -14,6 +14,9 @@ require 'rspec/rails'
 require 'ffaker'
 require 'shoulda-matchers'
 require 'pry'
+require 'webdrivers'
+
+Dir[File.join(File.dirname(__FILE__), 'support/**/*.rb')].each { |file| require file }
 
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
@@ -27,6 +30,11 @@ RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
     expectations.syntax = :expect
   end
+
+  config.before(:each) do
+    create(:store)
+  end
+
+  config.include Requests::JsonHelpers, type: :request
 end
 
-Dir[File.join(File.dirname(__FILE__), 'support/**/*.rb')].each { |file| require file }

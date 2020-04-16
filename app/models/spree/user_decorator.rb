@@ -1,5 +1,7 @@
-Spree.user_class.class_eval do
-  has_many :wishlists, class_name: 'Spree::Wishlist'
+module Spree::UserDecorator
+  def self.prepended(base)
+    base.has_many :wishlists, class_name: 'Spree::Wishlist'
+  end
 
   def wishlist
     default_wishlist = wishlists.where(is_default: true).first
@@ -9,3 +11,5 @@ Spree.user_class.class_eval do
     default_wishlist
   end
 end
+
+Spree.user_class.prepend Spree::UserDecorator
