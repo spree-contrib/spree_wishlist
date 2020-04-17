@@ -32,7 +32,7 @@ class Spree::WishedProductsController < Spree::BaseController
     @wished_product.destroy
 
     respond_with(@wished_product) do |format|
-      format.html { redirect_to wishlist_url(@wished_product.wishlist) }
+      format.html { redirect_to wishlist_url(@wished_product.wishlist), status: :see_other }
     end
   end
 
