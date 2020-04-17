@@ -1,6 +1,6 @@
 module Spree::UserDecorator
   def self.prepended(base)
-    base.has_many :wishlists, class_name: Spree::Wishlist.name
+    base.has_many :wishlists, class_name: 'Spree::Wishlist'
   end
 
   def wishlist
