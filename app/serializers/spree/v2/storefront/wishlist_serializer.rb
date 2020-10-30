@@ -3,6 +3,11 @@ module Spree
     module Storefront
       class WishlistSerializer < BaseSerializer
         set_type :wishlist
+
+        attributes :id, :access_hash, :name, :is_private, :is_default
+
+        belongs_to :user
+        has_many :wished_products
       end
     end
   end

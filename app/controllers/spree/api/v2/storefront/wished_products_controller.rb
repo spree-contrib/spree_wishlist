@@ -3,7 +3,6 @@ module Spree
     module V2
       module Storefront
         class WishedProductsController < ::Spree::Api::V2::BaseController
-          helper Spree::Wishlists::ApiHelpers
 
           def create
             spree_authorize! :create, Spree::WishedProduct

@@ -11,6 +11,7 @@ Spree::Core::Engine.add_routes do
 
     namespace :v2 do
       namespace :storefront do
+        resources :wishlists
         resources :wished_products, only: [:create, :update, :destroy]
       end
     end
