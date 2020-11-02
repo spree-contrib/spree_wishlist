@@ -36,7 +36,6 @@ RSpec.describe Spree::Api::V2::Storefront::WishlistsController, type: :request d
       get "/api/v2/storefront/wishlists/#{wishlist.access_hash}?include=wished_products", headers: headers
       expect(response).to have_http_status(:ok)
       expect(json['data']['attributes']['access_hash']).to                 eq (wishlist.access_hash)
-      expect(json['data']['attributes']['id']).to                          eq (wishlist.id)
       expect(json['data']['attributes']['name']).to                        eq (wishlist.name)
       expect(json['data']['attributes']['is_private']).to                  eq (wishlist.is_private?)
       expect(json['data']['attributes']['is_default']).to                  eq (wishlist.is_default?)

@@ -19,7 +19,7 @@ module Spree
             if wishlist.persisted?
               render_serialized_payload { serialize_resource(wishlist) }
             else
-              render_error_payload(wishlist.errors.full_messages.join(', '))
+              render_error_payload(wishlist.errors.full_messages.to_sentence)
             end
           end
 
@@ -34,14 +34,17 @@ module Spree
             if resource.errors.empty?
               render_serialized_payload { serialize_resource(resource) }
             else
-              render_error_payload(resource.errors.full_messages.join(', '))
+              render_error_payload(resource.errors.full_messages.to_sentence)
             end
           end
 
           def destroy
             authorize! :destroy, resource
-            resource.destroy
-            render_serialized_payload { serialize_resource(resource) }
+            if resource.destroy
+              render_serialized_payload { serialize_resource(resource) }
+            else
+              render_error_payload('Something went wrong')
+            end
           end
 
           private

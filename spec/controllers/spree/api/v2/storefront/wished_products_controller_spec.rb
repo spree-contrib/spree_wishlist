@@ -1,7 +1,7 @@
 RSpec.describe Spree::Api::V2::Storefront::WishedProductsController, type: :request do
   let(:wishlist)   { create(:wishlist) }
   let(:user)       { wishlist.user }
-  let(:product)    { create(:variant) }
+  let(:variant)    { create(:variant) }
   let(:headers)    { headers_bearer }
 
   include_context 'API v2 tokens'
@@ -9,22 +9,20 @@ RSpec.describe Spree::Api::V2::Storefront::WishedProductsController, type: :requ
   context '#create' do
 
     it 'must permit add product to the default wishlist' do
-      post "/api/v2/storefront/wished_products", headers: headers, params: {
+      post "/api/v2/storefront/wishlists/#{wishlist.id}/wished_products", headers: headers, params: {
         wished_product: {
-          variant_id: product.id,
-          wishlist_id: wishlist.id
+          variant_id: variant.id
         }
       }
-      expect(json['data']['relationships']['variant']['data']['id']).to eq(product.id.to_s)
+      expect(json['data']['relationships']['variant']['data']['id']).to eq(variant.id.to_s)
     end
 
     it 'will add the item to list identified by `wishlist_id` if passed' do
       other_wishlist = create(:wishlist, user: user)
 
-      post "/api/v2/storefront/wished_products", headers: headers, params: {
+      post "/api/v2/storefront/wishlists/#{other_wishlist.id}/wished_products", headers: headers, params: {
         wished_product: {
-          variant_id: product.id,
-          wishlist_id: other_wishlist.id
+          variant_id: variant.id
         }
       }
       expect(Spree::WishedProduct.count).to eq(1)
@@ -32,10 +30,9 @@ RSpec.describe Spree::Api::V2::Storefront::WishedProductsController, type: :requ
     end
 
     it 'can not add product if missing variant' do
-      post "/api/v2/storefront/wished_products", headers: headers, params: {
+      post "/api/v2/storefront/wishlists/#{user.wishlist.id}/wished_products", headers: headers, params: {
         wished_product: {
-          nodata_id: product.id,
-          wishlist_id: user.wishlist.id
+          nodata_id: variant.id
         }
       }
       expect(response).to have_http_status(422)
@@ -45,30 +42,30 @@ RSpec.describe Spree::Api::V2::Storefront::WishedProductsController, type: :requ
 
   context '#update' do
     let(:bad_user) { create(:user) }
-    let(:new_product) { create(:variant) }
+    let(:new_variant) { create(:variant) }
 
     before do
       bad_user.generate_spree_api_key!
       @wished_product = wishlist.wished_products.create( {
-        variant_id: product.id
+        variant_id: variant.id
       })
     end
 
     it 'must permit update wishlist product' do
-      put "/api/v2/storefront/wished_products/#{@wished_product.id}", headers: headers, params: {
+      put "/api/v2/storefront/wishlists/#{user.wishlist.id}/wished_products/#{@wished_product.id}", headers: headers, params: {
         wished_product: {
-          variant_id: new_product.id,
-          wishlist_id: user.wishlist.id
+          variant_id: new_variant.id,
+          quantity: 100
         }
       }
-      expect(json['data']['relationships']['variant']['data']['id']).to eq(new_product.id.to_s)
+      expect(json['data']['relationships']['variant']['data']['id']).to eq(new_variant.id.to_s)
+      expect(json['data']['attributes']['quantity']).to eq(100)
     end
 
     it 'can not update wishlist with product that not exists' do
-      put "/api/v2/storefront/wished_products/#{@wished_product.id}", headers: headers, params: {
+      put "/api/v2/storefront/wishlists/#{user.wishlist.id}/wished_products/#{@wished_product.id}", headers: headers, params: {
         wished_product: {
-          variant_id: 9999,
-          wishlist_id: user.wishlist.id
+          variant_id: 9999
         }
       }
       expect(response.status).to eq(422)
@@ -94,7 +91,7 @@ RSpec.describe Spree::Api::V2::Storefront::WishedProductsController, type: :requ
 
       expect(user.wishlist.wished_products.count).to eq(@wished_products.count)
 
-      delete "/api/v2/storefront/wished_products/#{@wished_products.last.id}", headers: headers
+      delete "/api/v2/storefront/wishlists/#{user.wishlist.id}/wished_products/#{@wished_products.last.id}", headers: headers
       expect(user.wishlist.wished_products.count).to eq(@wished_products.count - 1)
     end
   end
