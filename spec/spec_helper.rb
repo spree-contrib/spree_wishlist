@@ -15,6 +15,11 @@ require 'ffaker'
 require 'shoulda-matchers'
 require 'pry'
 require 'webdrivers'
+require 'spree/api/testing_support/caching'
+require 'spree/api/testing_support/helpers'
+require 'spree/api/testing_support/setup'
+require 'spree/api/testing_support/v2/base'
+require 'spree/api/testing_support/v2/current_order'
 
 Dir[File.join(File.dirname(__FILE__), 'support/**/*.rb')].each { |file| require file }
 
@@ -26,6 +31,8 @@ RSpec.configure do |config|
   config.fail_fast = false
   config.filter_run focus: true
   config.run_all_when_everything_filtered = true
+
+  config.include Spree::Api::TestingSupport::Helpers, type: :request
 
   config.expect_with :rspec do |expectations|
     expectations.syntax = :expect
