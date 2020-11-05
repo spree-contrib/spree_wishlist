@@ -9,7 +9,7 @@ RSpec.describe Spree::Api::V2::Storefront::WishedProductsController, type: :requ
   context '#create' do
 
     it 'must permit add product to the default wishlist' do
-      post "/api/v2/storefront/wishlists/#{wishlist.id}/wished_products", headers: headers, params: {
+      post "/api/v2/storefront/wishlists/#{wishlist.access_hash}/wished_products", headers: headers, params: {
         wished_product: {
           variant_id: variant.id
         }
@@ -20,7 +20,7 @@ RSpec.describe Spree::Api::V2::Storefront::WishedProductsController, type: :requ
     it 'will add the item to list identified by `wishlist_id` if passed' do
       other_wishlist = create(:wishlist, user: user)
 
-      post "/api/v2/storefront/wishlists/#{other_wishlist.id}/wished_products", headers: headers, params: {
+      post "/api/v2/storefront/wishlists/#{other_wishlist.access_hash}/wished_products", headers: headers, params: {
         wished_product: {
           variant_id: variant.id
         }
@@ -30,7 +30,7 @@ RSpec.describe Spree::Api::V2::Storefront::WishedProductsController, type: :requ
     end
 
     it 'can not add product if missing variant' do
-      post "/api/v2/storefront/wishlists/#{user.wishlist.id}/wished_products", headers: headers, params: {
+      post "/api/v2/storefront/wishlists/#{user.wishlist.access_hash}/wished_products", headers: headers, params: {
         wished_product: {
           nodata_id: variant.id
         }
@@ -52,7 +52,7 @@ RSpec.describe Spree::Api::V2::Storefront::WishedProductsController, type: :requ
     end
 
     it 'must permit update wishlist product' do
-      put "/api/v2/storefront/wishlists/#{user.wishlist.id}/wished_products/#{@wished_product.id}", headers: headers, params: {
+      put "/api/v2/storefront/wishlists/#{user.wishlist.access_hash}/wished_products/#{@wished_product.id}", headers: headers, params: {
         wished_product: {
           variant_id: new_variant.id,
           quantity: 100
@@ -63,7 +63,7 @@ RSpec.describe Spree::Api::V2::Storefront::WishedProductsController, type: :requ
     end
 
     it 'can not update wishlist with product that not exists' do
-      put "/api/v2/storefront/wishlists/#{user.wishlist.id}/wished_products/#{@wished_product.id}", headers: headers, params: {
+      put "/api/v2/storefront/wishlists/#{user.wishlist.access_hash}/wished_products/#{@wished_product.id}", headers: headers, params: {
         wished_product: {
           variant_id: 9999
         }
@@ -91,7 +91,7 @@ RSpec.describe Spree::Api::V2::Storefront::WishedProductsController, type: :requ
 
       expect(user.wishlist.wished_products.count).to eq(@wished_products.count)
 
-      delete "/api/v2/storefront/wishlists/#{user.wishlist.id}/wished_products/#{@wished_products.last.id}", headers: headers
+      delete "/api/v2/storefront/wishlists/#{user.wishlist.access_hash}/wished_products/#{@wished_products.last.id}", headers: headers
       expect(user.wishlist.wished_products.count).to eq(@wished_products.count - 1)
     end
   end

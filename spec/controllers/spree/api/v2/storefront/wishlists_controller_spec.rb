@@ -47,7 +47,9 @@ RSpec.describe Spree::Api::V2::Storefront::WishlistsController, type: :request d
     it 'can create a new wishlist' do
       post "/api/v2/storefront/wishlists", headers: headers,  params: {
         wishlist: {
-          name: 'fathers day'
+          name: 'fathers day',
+          is_private: '1',
+          is_default: '1'
         }
       }
       expect(user.wishlists.count).to eq(2)

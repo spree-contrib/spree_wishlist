@@ -52,7 +52,7 @@ module Spree
           end
 
           def wishlist
-            @wishlist ||= Spree::Wishlist.find(params[:wishlist_id])
+            @wishlist ||= Spree::Wishlist.find_by_access_hash(params[:wishlist_id])
           end
 
           def wished_product_attributes
