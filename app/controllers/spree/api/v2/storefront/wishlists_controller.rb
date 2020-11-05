@@ -6,7 +6,7 @@ module Spree
           include Spree::Api::V2::CollectionOptionsHelpers
 
           def index
-            spree_authorize! :show, Spree::Wishlist
+            spree_authorize! :index, Spree::Wishlist
             wishlists = spree_current_user.wishlists.page(params[:page]).per(params[:per_page])
             render_serialized_payload { serialize_collection(wishlists) }
           end
@@ -55,7 +55,7 @@ module Spree
           end
 
           def resource
-            @resource ||= Spree::Wishlist.find_by_access_hash(params[:id])
+            @resource ||= Spree::Wishlist.find_by!(access_hash: params[:id])
           end
 
           def resource_serializer
