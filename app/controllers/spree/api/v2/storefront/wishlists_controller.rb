@@ -48,6 +48,13 @@ module Spree
             end
           end
 
+          def default
+            spree_authorize! :create, Spree::Wishlist
+            wishlist = spree_current_user.wishlist
+
+            render_serialized_payload { serialize_resource(wishlist) }
+          end
+
           private
 
           def wishlist_attributes
