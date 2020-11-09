@@ -5,6 +5,22 @@ RSpec.describe Spree::Api::V2::Storefront::WishlistsController, type: :request d
 
   include_context 'API v2 tokens'
 
+  context '#default' do
+    context 'no wishlist' do
+      it 'must create default wishlist' do
+        expect { get '/api/v2/storefront/wishlists/default', headers: headers }.to change { Spree::Wishlist.count }.from(0).to(1)
+      end
+    end
+
+    context 'has default wishlist' do
+      before { wishlist }
+
+      it 'must return wishlist' do
+        expect { get '/api/v2/storefront/wishlists/default', headers: headers }.to_not change { Spree::Wishlist.count }
+      end
+    end
+  end
+
   context '#index' do
     let!(:wishlists) { create_list(:wishlist, 30, user: user) }
 

@@ -12,6 +12,7 @@ Spree::Core::Engine.add_routes do
     namespace :v2 do
       namespace :storefront do
         resources :wishlists do
+          get 'default', on: :collection
           resources :wished_products, only: [:create, :update, :destroy]
         end
       end
