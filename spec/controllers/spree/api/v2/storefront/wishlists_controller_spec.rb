@@ -57,6 +57,18 @@ RSpec.describe Spree::Api::V2::Storefront::WishlistsController, type: :request d
       expect(json['data']['attributes']['is_default']).to                  eq (wishlist.is_default?)
       expect(json['data']['relationships']['wished_products']['data'].first['id']).to eq(wished_product.id.to_s)
     end
+
+    context 'pre_tax_amount' do
+      let!(:tax_rate) { create(:tax_rate, amount: 0.1, included_in_price: true) }
+      before do
+        wished_product.variant.product.update(tax_category: tax_rate.tax_category, price: 10)
+      end
+
+      it 'shows pre_tax_amount' do
+        get "/api/v2/storefront/wishlists/#{wishlist.access_hash}?include=wished_products", headers: headers
+        expect(json['included'].first['attributes']['display_pre_tax_amount']).to eq "$9.00"
+      end
+    end
   end
 
   context '#create' do
