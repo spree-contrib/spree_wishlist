@@ -3,7 +3,7 @@ class Spree::WishedProduct < ActiveRecord::Base
   belongs_to :wishlist
 
   def total
-    quantity * variant.price
+    quantity * (variant.price || 0)
   end
 
   def display_total
