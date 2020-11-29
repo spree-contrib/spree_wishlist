@@ -30,9 +30,9 @@ Available endpoints:
 
 ### Wishlists management
 
-* GET `/api/v1/wishlists` - returns a list of wishlists for signed in user
-* GET `/api/v1/wishlists/:id` - returns single wishlists with a list of Products (Variants)
-* POST `/api/v1/wishlists` - creates a new wishlist
+- GET `/api/v1/wishlists` - returns a list of wishlists for signed in user
+- GET `/api/v1/wishlists/:id` - returns single wishlists with a list of Products (Variants)
+- POST `/api/v1/wishlists` - creates a new wishlist
 
   payload:
 
@@ -42,21 +42,21 @@ Available endpoints:
   }
   ```
 
-* PATCH `/api/v1/wishlists/:id`
+- PATCH `/api/v1/wishlists/:id`
 
   payload:
-  
+
   ```json
   wishlist: {
     "name": "new name"
   }
   ```
 
-* DELETE `/api/v1/wishlists/:id`
+- DELETE `/api/v1/wishlists/:id`
 
 ### Wishlists products management
 
-* POST `/api/v1/wished_products` - adds Product (Variant) to a Wishlist
+- POST `/api/v1/wished_products` - adds Product (Variant) to a Wishlist
 
   payload:
 
@@ -67,7 +67,7 @@ Available endpoints:
   }
   ```
 
-* PATCH `/api/v1/wished_products/:id`
+- PATCH `/api/v1/wished_products/:id`
 
   payload:
 
@@ -78,7 +78,77 @@ Available endpoints:
   }
   ```
 
-* DELETE `/api/v1/wished_products/:id`
+- DELETE `/api/v1/wished_products/:id`
+
+---
+
+### Wishlists V2
+
+#### Wishlists management
+
+- GET `/api/v2/wishlists` - returns a list of wishlists for signed in user
+
+- GET `/api/v2/wishlists/:access_hash` - returns single wishlists with a list of Products (Variants)
+
+  payload:
+
+  ```json
+  { "include": "wished_products.variant" }
+  ```
+
+- PATCH `/api/v2/wishlists/:access_hash`
+
+  payload:
+
+  ```json
+  wishlist: {
+      "name": "Wishlist name",
+      "is_default": true,
+      "is_private": true,
+    }
+  ```
+
+- POST `/api/v2/wishlists` - creates a new wishlist
+
+  payload:
+
+  ```json
+    wishlist: {
+        "name": "Wishlist name",
+        "is_default": true,
+        "is_private": true,
+      }
+  ```
+
+- DELETE `/api/v2/wishlists/:access_hash`
+
+#### Wishlists products management
+
+- POST `/api/v2/wishlists/:access_hash/wished_products` - adds Product (Variant) to a Wishlist
+
+  payload:
+
+  ```json
+  wished_product: {
+    "variant_id": 2,
+    "remark": "I want this",
+    "quantity": 3
+  }
+  ```
+
+- PATCH `/api/v2/wishlists/:access_hash/wished_products/:id`
+
+  payload:
+
+  ```json
+  wished_product: {
+    "variant_id": 2,
+    "remark": "I want this",
+    "quantity": 4
+  }
+  ```
+
+- DELETE `/api/v2/wishlists/:access_hash/wished_products/:id`
 
 ---
 
