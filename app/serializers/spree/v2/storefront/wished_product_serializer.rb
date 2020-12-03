@@ -4,7 +4,7 @@ module Spree
       class WishedProductSerializer < BaseSerializer
         set_type :wished_product
 
-        attributes :remark, :quantity
+        attributes :remark, :quantity, :total, :display_total
 
         belongs_to :variant
         belongs_to :wishlist, serializer: ::Spree::V2::Storefront::WishlistSerializer
