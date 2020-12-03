@@ -86,9 +86,9 @@ Available endpoints:
 
 #### Wishlists management
 
-- GET `/api/v2/wishlists` - returns a list of wishlists for signed in user
+- GET `/api/v2/storefront/wishlists` - returns a list of wishlists for signed in user
 
-- GET `/api/v2/wishlists/:access_hash` - returns single wishlists with a list of Products (Variants)
+- GET `/api/v2/storefront/wishlists/:access_hash` - returns single wishlists with a list of Products (Variants)
 
   payload:
 
@@ -96,7 +96,7 @@ Available endpoints:
   { "include": "wished_products.variant" }
   ```
 
-- PATCH `/api/v2/wishlists/:access_hash`
+- PATCH `/api/v2/storefront/wishlists/:access_hash`
 
   payload:
 
@@ -108,7 +108,7 @@ Available endpoints:
     }
   ```
 
-- POST `/api/v2/wishlists` - creates a new wishlist
+- POST `/api/v2/storefront/wishlists` - creates a new wishlist
 
   payload:
 
@@ -120,11 +120,11 @@ Available endpoints:
       }
   ```
 
-- DELETE `/api/v2/wishlists/:access_hash`
+- DELETE `/api/v2/storefront/wishlists/:access_hash`
 
 #### Wishlists products management
 
-- POST `/api/v2/wishlists/:access_hash/wished_products` - adds Product (Variant) to a Wishlist
+- POST `/api/v2/storefront/wishlists/:access_hash/wished_products` - adds Product (Variant) to a Wishlist
 
   payload:
 
@@ -136,7 +136,7 @@ Available endpoints:
   }
   ```
 
-- PATCH `/api/v2/wishlists/:access_hash/wished_products/:id`
+- PATCH `/api/v2/storefront/wishlists/:access_hash/wished_products/:id`
 
   payload:
 
@@ -148,7 +148,7 @@ Available endpoints:
   }
   ```
 
-- DELETE `/api/v2/wishlists/:access_hash/wished_products/:id`
+- DELETE `/api/v2/storefront/wishlists/:access_hash/wished_products/:id`
 
 ---
 
