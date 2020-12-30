@@ -5,6 +5,8 @@ module Spree
         class WishlistsController < ::Spree::Api::V2::BaseController
           include Spree::Api::V2::CollectionOptionsHelpers
 
+          before_action :require_spree_current_user
+
           def index
             spree_authorize! :index, Spree::Wishlist
             wishlists = spree_current_user.wishlists.page(params[:page]).per(params[:per_page])
