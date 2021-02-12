@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.require_path  = 'lib'
   s.requirements << 'none'
 
-  spree_version = '>= 3.7.0', '< 5.0'
+  spree_version = '>= 4.2.0.rc5', '< 5.0'
   s.add_runtime_dependency 'spree_core', spree_version
   s.add_runtime_dependency 'spree_api', spree_version
   s.add_runtime_dependency 'spree_extension'
@@ -34,6 +34,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'capybara'
   s.add_development_dependency 'capybara-screenshot'
   s.add_development_dependency 'database_cleaner'
+  s.add_development_dependency 'deface'
   s.add_development_dependency 'simplecov'
   s.add_development_dependency 'shoulda-matchers'
   s.add_development_dependency 'coffee-rails'
