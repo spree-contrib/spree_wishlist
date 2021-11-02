@@ -1,3 +1,9 @@
+## ⚠️ Deprecation notice ⚠️
+
+Since v4.4, Spree supports Wishlists out of the box - https://github.com/spree/spree/pull/11308. Code is compatible with this extension and everyone can migrate  easily.
+
+Hence, this extension is flagged as deprecated and won't be developed and actively maintained anymore. 
+
 # Spree Wishlist
 
 [![Build Status](https://travis-ci.org/spree-contrib/spree_wishlist.svg?branch=master)](https://travis-ci.org/spree-contrib/spree_wishlist)
