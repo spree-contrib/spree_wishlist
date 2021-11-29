@@ -2,20 +2,18 @@ module Spree
   module Api
     module V2
       module Storefront
-        class WishlistsController < ::Spree::Api::V2::BaseController
-          include Spree::Api::V2::CollectionOptionsHelpers
-
+        class WishlistsController < ::Spree::Api::V2::ResourceController
           before_action :require_spree_current_user
 
           def index
-            spree_authorize! :index, Spree::Wishlist
+            spree_authorize! :index, model_class
             wishlists = spree_current_user.wishlists.page(params[:page]).per(params[:per_page])
             render_serialized_payload { serialize_collection(wishlists) }
           end
 
           def create
             spree_authorize! :create, Spree::Wishlist
-            wishlist = Spree::Wishlist.new( wishlist_attributes )
+            wishlist = Spree::Wishlist.new(wishlist_attributes)
             wishlist.user = spree_current_user
             wishlist.save
 
@@ -73,6 +71,10 @@ module Spree
 
           def collection_serializer
             ::Spree::V2::Storefront::WishlistSerializer
+          end
+
+          def model_class
+            Spree::Wishlist
           end
         end
       end
